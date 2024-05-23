@@ -195,7 +195,8 @@ class Lsky extends BaseController
             $original_height = imagesy($image);
             // 新图片尺寸
             if ($new_height == 0) {
-                $new_height = ($original_height / $original_width) * $new_width; // 保持宽高比
+//                $new_height = ($original_height / $original_width) * $new_width; // 保持宽高比
+                $new_height = (int)($original_height * $new_width / $original_width); // 保持宽高比
             }
             // 创建一个新图片资源，用于调整尺寸
             $resized_image = imagecreatetruecolor($new_width, $new_height);
@@ -210,7 +211,9 @@ class Lsky extends BaseController
             exit; // 退出脚本，防止进一步执行
         } else {
             // 处理错误情况，例如返回一个错误图片或显示错误消息
+            header('HTTP/1.1 500 Internal Server Error');
             echo "Error loading image.";
+            exit; // 退出脚本
         }
     }
 }
