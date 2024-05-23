@@ -116,11 +116,14 @@ class Lsky extends BaseController
         Apidoc\Url("/api/lsky/randomImages"),
         Apidoc\Header(name:"Content-Type",type: "string",require: true,desc: "Content-Type 编码请求",mock: "application/json"),
         Apidoc\Query(name:"category",type: "string",require: true,desc: "类别：风景、汽车、星空、手机壁纸、24节气、动漫"),
+        Apidoc\Query(name:"width",type: "int",require: true,desc: "图片宽度（默认300）"),
+        Apidoc\Query(name:"height",type: "int",require: false,desc: "图片高度（不传自行计算宽高比）"),
         Apidoc\Returned("data",type: "array",desc: "data"),
     ]
     public function randomImages(Request $request) {
         $category = $request->get('category', '');
-        var_dump($category);
+        $width = $request->get('width', 300);
+        $height = $request->get('height', 0);
         $album = [
             ["id" => 8, "name" => "风景"],
             ["id" => 7, "name" => "汽车"],
@@ -161,12 +164,53 @@ class Lsky extends BaseController
                 if (count($imageArr) > 0) {
                     $randomImage = $imageArr[array_rand($imageArr)];
                 }
-                return redirect($randomImage);
+                ob_start(); // 开始输出缓冲
+                $this->sizeImages($randomImage, $width, $height);
+                $output = ob_get_clean(); // 获取输出缓冲并清空
+                echo $output; // 输出缓冲内容（如果有的话）
+//                return redirect($randomImage);
             }
             return json($response->status());
         } catch (ErrorException $e) {
             var_dump($e);
             return $e;
+        }
+    }
+
+    /**
+     * 返回指定尺寸图片
+     * @param $image_url
+     * @param $new_width
+     * @param $new_height
+     * @return void
+     */
+    public function sizeImages($image_url, $new_width = 200, $new_height = 0) {
+        $response = Http::asJson()->get($image_url);
+        // 确保$response是二进制数据
+        if ($response->successful()) {
+            $image_data = $response->body();
+            $image = imagecreatefromstring($image_data);
+            // 原始图片尺寸
+            $original_width = imagesx($image);
+            $original_height = imagesy($image);
+            // 新图片尺寸
+            if ($new_height == 0) {
+                $new_height = ($original_height / $original_width) * $new_width; // 保持宽高比
+            }
+            // 创建一个新图片资源，用于调整尺寸
+            $resized_image = imagecreatetruecolor($new_width, $new_height);
+            // 调整图片尺寸
+            imagecopyresampled($resized_image, $image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+            // 输出调整尺寸后的图片
+            header('Content-Type: image/webp');
+            imagewebp($resized_image);
+            // 释放资源
+            imagedestroy($image);
+            imagedestroy($resized_image);
+            exit; // 退出脚本，防止进一步执行
+        } else {
+            // 处理错误情况，例如返回一个错误图片或显示错误消息
+            echo "Error loading image.";
         }
     }
 }
