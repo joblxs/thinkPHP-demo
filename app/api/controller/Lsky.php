@@ -177,6 +177,32 @@ class Lsky extends BaseController
         }
     }
 
+    #[
+        Apidoc\Title("裁剪指定图片尺寸"),
+        Apidoc\Tag("兰空"),
+        Apidoc\Method("GET"),
+        Apidoc\Url("/api/lsky/tailorImages"),
+        Apidoc\Header(name:"Content-Type",type: "string",require: true,desc: "Content-Type 编码请求",mock: "application/json"),
+        Apidoc\Query(name:"url",type: "string",require: true,desc: "图片地址"),
+        Apidoc\Query(name:"width",type: "int",require: true,desc: "图片宽度"),
+        Apidoc\Query(name:"height",type: "int",require: false,desc: "图片高度（不传自行计算宽高比）"),
+        Apidoc\Returned("data",type: "array",desc: "data"),
+    ]
+    public function tailorImages(Request $request) {
+        $url = $request->get('url', '');
+        $width = $request->get('width', 30);
+        $height = $request->get('height', 0);
+        try {
+            ob_start(); // 开始输出缓冲
+            $this->sizeImages($url, $width, $height);
+            $output = ob_get_clean(); // 获取输出缓冲并清空
+            echo $output; // 输出缓冲内容（如果有的话）
+        } catch (ErrorException $e) {
+            var_dump($e);
+            return $e;
+        }
+    }
+
     /**
      * 返回指定尺寸图片
      * @param $image_url
@@ -185,6 +211,11 @@ class Lsky extends BaseController
      * @return void
      */
     public function sizeImages($image_url, $new_width = 200, $new_height = 0) {
+        if (empty($image_url)) {
+            header('HTTP/1.1 500 Internal Server Error');
+            echo "Error loading image.";
+            exit; // 退出脚本
+        }
         $response = Http::asJson()->get($image_url);
         // 确保$response是二进制数据
         if ($response->successful()) {
