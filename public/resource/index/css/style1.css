@@ -104,7 +104,6 @@ nav {
     display: inline-block;
     /* line-height: 1em; */
     padding: 0.4em;
-	font-size: 20px;
 }
 .navigation__item a {
     position: relative;
@@ -152,6 +151,8 @@ ol, ul {
 	.content {
 		width: 90%;
 		opacity: 1;
+		height: -webkit-fill-available;
+        overflow-y: scroll;
 	}
 	.navigation {
 		flex-direction: column;
@@ -159,6 +160,11 @@ ol, ul {
 	}
 	.navigation__item {
 		margin-bottom: 10px;
-		/* font-size: 30px; */
+		font-size: 16px;
+	}
+	
+	/* 特定于.content类的滚动条样式 */
+	.content::-webkit-scrollbar {
+		width: 0px; /* 可以设置不同的宽度 */
 	}
 }
