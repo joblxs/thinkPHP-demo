@@ -102,15 +102,15 @@ nav {
 }
 .navigation__item {
     display: inline-block;
-    line-height: 1em;
-    padding: 1em 0;
+    /* line-height: 1em; */
+    padding: 0.4em;
 	font-size: 20px;
 }
 .navigation__item a {
     position: relative;
     color: #FFF;
     opacity: .8;
-	transition: all .3s;
+	/* transition: all .3s; */
 	padding: 10px 20px;
     border: 1px solid #fff;
     border-radius: 20px;
@@ -120,13 +120,16 @@ nav {
     text-shadow: none;
 	-webkit-font-smoothing: antialiased;
 	text-decoration: none;
+	transition: transform 0.3s ease; /* 平滑过渡效果 */
+    display: inline-block; /* 使a标签可以应用transform属性 */
 }
 .navigation__item a:hover {
     color: #FFF;
     background: #FF7F00;
     border-color: #FF7F00;
     opacity: 1;
-    transition: all .3s;
+    /* transition: all .3s; */
+	transform: scale(1.2); /* 鼠标悬停时放大到1.2倍 */
 }
 ol, ul {
 	list-style: none;
