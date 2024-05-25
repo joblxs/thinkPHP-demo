@@ -104,6 +104,7 @@ nav {
     display: inline-block;
     line-height: 1em;
     padding: 1em 0;
+	font-size: 20px;
 }
 .navigation__item a {
     position: relative;
@@ -142,4 +143,19 @@ ol, ul {
 .icpnum{
 	color: #fff;
 	text-decoration: none;
+}
+
+@media (max-width: 768px) {
+	.content {
+		width: 90%;
+		opacity: 1;
+	}
+	.navigation {
+		flex-direction: column;
+		align-items: center;
+	}
+	.navigation__item {
+		margin-bottom: 10px;
+		/* font-size: 30px; */
+	}
 }
