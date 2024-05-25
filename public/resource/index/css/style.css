@@ -115,7 +115,7 @@ code {
   top: 50%;
   left: 50%;
   position: absolute;
-  /* z-index: 999; */
+  z-index: 999;
 }
 .solar-syst div:not(.sun) {
   border: 1px solid rgba(102, 166, 229, 0.12);

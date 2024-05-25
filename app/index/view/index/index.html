@@ -1,111 +1,64 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" >
 
-<html>
- <head> 
-  <title>拾贝-https://lxshuai.top/</title> 
-  <meta name="description" content="拾贝-https://lxshuai.top/" /> 
+<head>
+  <title>拾贝</title>
+  <meta name=keywords content="拾贝">
+  <meta name=description content="拾贝">
   <meta charset="utf-8" /> 
   <meta http-equiv="content-language" content="zh-cn" />
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Lato:300'>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="/resource/index/css/style.css">
 
-<link rel='stylesheet prefetch' href='/resource/index/css/css.css?family=Lato:300'>
-<link rel='stylesheet prefetch' href='/resource/index/css/font-awesome.min.css'>
-<link rel="stylesheet" href="/resource/index/css/style.css">
+  <link rel="icon" href="/resource/index/images/favicon.ico">
+  <link rel="shortcut icon" href="/resource/index/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/resource/index/css/style1.css">
+
+</head>
+
+<body>
+
+<div class='solar-syst'>
+  <div class='sun'></div>
+  <div class='mercury'></div>
+  <div class='venus'></div>
+  <div class='earth'></div>
+  <div class='mars'></div>
+  <div class='jupiter'></div>
+  <div class='saturn'></div>
+  <div class='uranus'></div>
+  <div class='neptune'></div>
+  <div class='pluto'></div>
+  <div class='asteroids-belt'></div>
+</div>
 
 
-  <link rel="shortcut icon" href="/resource/index/images/favicon.ico" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> 
-  <link rel="stylesheet" href="/resource/index/assets/css/main.css" /> 
-  <noscript> 
-   <link rel="stylesheet" href="/resource/index/assets/css/noscript.css" /> 
-  </noscript>
- </head> 
- <body class="is-preload"> 
-  <div class='solar-syst'>
-    <div class='sun'></div>
-    <div class='mercury'></div>
-    <div class='venus'></div>
-    <div class='earth'></div>
-    <div class='mars'></div>
-    <div class='jupiter'></div>
-    <div class='saturn'></div>
-    <div class='uranus'></div>
-    <div class='neptune'></div>
-    <div class='pluto'></div>
-    <div class='asteroids-belt'></div>
+<div class="content">
+  <div class="title">拾贝</div>
+  <hr class="hr" />
+  <div class="discription">生命如火，燃烧不息；心灵如潮，折腾不止。</div>
+  <hr class="hr">
+  <nav class="cover-navigation cover-navigation--primary">
+      <ul class="navigation">
+          <li class="navigation__item"><a target="_blank" href="https://chat.lxshuai.top/">chatGPT</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://nav.lxshuai.top/">导航</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://www.lxshuai.top/">halo博客</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://blog.lxshuai.top/">hexo博客</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://pic.lxshuai.top/">图床</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://www.lxshuai.top/docs">随笔文档</a></li>
+          <li class="navigation__item"><a target="_blank" href="https://listen.lxshuai.top/">站点监测</a></li>
+          <li class="navigation__item"><a target="_blank" href="/apidoc">api管理</a></li>
+      </ul>
+  </nav>
+  <div class="icp">
+    <a href="http://www.beian.miit.gov.cn" class="icpnum" target="_blank" rel="nofollow">冀ICP备2024067055号</a>
   </div>
-  <!-- Wrapper --> 
-  <div id="wrapper"> 
-   <!-- Header --> 
-   <header id="header"> 
-    <div class="icon"> 
-     <img src="/resource/index/images/asset.jpg" alt="拾贝" title="拾贝" class="logo" /> 
-    </div> 
-    <div class="content"> 
-     <div class="inner"> 
-      <h1>拾贝</h1> 
-      <p>生命如火，燃烧不息；心灵如潮，折腾不止。</p>
-     </div>
-    </div> 
+</div>
+<div class="landscape"></div>
+<div class="filter"></div>
+<canvas id="canvas"></canvas>
+<script type="text/javascript" src="/resource/index/js/sky.js"></script>
+</body>
 
-    <!--背景-->
-    <!-- <div class='solar-syst'>
-        <div class='sun'></div>
-        <div class='mercury'></div>
-        <div class='venus'></div>
-        <div class='earth'></div>
-        <div class='mars'></div>
-        <div class='jupiter'></div>
-        <div class='saturn'></div>
-        <div class='uranus'></div>
-        <div class='neptune'></div>
-        <div class='pluto'></div>
-        <div class='asteroids-belt'></div>
-    </div> -->
-
-
-    <nav> 
-     <ul> 
-      <li> <a target="_blank" href="https://chat.lxshuai.top/">chatGPT</a></li>
-      <li> <a target="_blank" href="https://www.lxshuai.top/">halo博客</a></li>
-      <li> <a target="_blank" href="https://blog.lxshuai.top/">hexo博客</a></li>
-      <li> <a target="_blank" href="https://pic.lxshuai.top/">图床</a></li>
-      <li> <a target="_blank" href="https://www.lxshuai.top/docs">随笔文档</a></li>
-      <li> <a target="_blank" href="https://listen.lxshuai.top/">站点监测</a></li>
-      <li> <a target="_blank" href="/apidoc">api管理</a></li>
-     </ul> 
-    </nav> 
-
-   </header> 
-   <!-- Footer --> 
-   <footer id="footer"> 
-    <p class="copyright">您的IP：<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-        <script type="text/javascript">document.write(returnCitySN["cip"])</script>
-    </p> 
-    <p class="copyright"><script>
-		var mydate = new Date();
-		document.writeln("Copyright&nbsp;&copy;&nbsp;2024 - "+mydate.getFullYear()+'&nbsp;拾贝<br />All&nbsp;Rights&nbsp;Reserved');</script></p> 
-	<p class="copyright"><a href="https://beian.miit.gov.cn" target="_blank">冀ICP备2024067055号</a></p> 
-
-   </footer> 
-  </div>
-
-  <!-- BG --> 
-  <!-- <div id="bg"> --> 
-  <!-- Scripts --> 
-  <script src="/resource/index/assets/js/jquery.min.js"></script> 
-  <script src="/resource/index/assets/js/browser.min.js"></script> 
-  <script src="/resource/index/assets/js/breakpoints.min.js"></script> 
-  <script src="/resource/index/assets/js/util.js"></script> 
-  <script src="/resource/index/assets/js/main.js"></script> 
-  <style>canvas { padding:0; margin:0; }</style> 
-  <!-- sakura shader --> 
-  
-  <style>
-    #wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-  </style>
- </body>
 </html>
