@@ -10,6 +10,30 @@ html, body {
 	font-family:'Questrial','Noto Serif SC' ;
 }
 
+.site-header {
+	position: absolute;
+    top: 5%;
+    width: 100%;
+	text-align: center; /* 文本居中对齐 */
+}
+.site-header .title{
+	margin: 15px 0;
+    font-size: 2.5em;
+    letter-spacing: 4px;
+    color: #FFF;
+}
+.site-header .hr{
+	width: 50%;
+	margin: 20px auto;
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 1);
+	height: 1px;
+}
+.site-header .discription{
+    font-size: 20px;
+    margin: 20px;
+}
+
 #canvas {
 	position: fixed;
 	top: 0;
@@ -60,31 +84,21 @@ user-select: none;
     left: 50%;
     top: 45%;
 	transform: translate(-50%,-50%);
-	z-index:9999
+	z-index:9999;
+	height: 40%;
 }
 .content {
 	opacity: 0.15;
 	transition: opacity 2s ease;
+	overflow-y: scroll;
+}
+	
+/* 特定于.content类的滚动条样式 */
+.content::-webkit-scrollbar {
+	width: 0px; /* 可以设置不同的宽度 */
 }
 .content:hover {
 	opacity: 1.5;
-}
-.content .title{
-	margin: 15px 0;
-    font-size: 2.5em;
-    letter-spacing: 4px;
-    color: #FFF;
-}
-.content .hr{
-	width: 50%;
-	margin: 20px auto;
-	border: none;
-	border-top: 1px solid rgba(255, 255, 255, 1);
-	height: 1px;
-}
-.content .discription{
-    font-size: 20px;
-    margin: 20px;
 }
 .cover-navigation {
 	margin: 30px;
@@ -139,6 +153,17 @@ ol, ul {
     font: inherit;
     vertical-align: baseline;
 }
+.site-footer {
+	position: absolute;
+    bottom: 35px;
+    width: 100%;
+    height: 50px;
+	/* 根据需要调整footer的样式 */
+	height: 50px; /* 底部区域的高度 */
+	text-align: right; /* 文本居中对齐 */
+	line-height: 50px; /* 使文本垂直居中 */
+    z-index: 999;
+}
 .icp{
 	margin: 20px;
 }
@@ -151,8 +176,6 @@ ol, ul {
 	.content {
 		width: 90%;
 		opacity: 1;
-		height: -webkit-fill-available;
-        overflow-y: scroll;
 	}
 	.navigation {
 		flex-direction: column;
@@ -161,10 +184,5 @@ ol, ul {
 	.navigation__item {
 		margin-bottom: 10px;
 		font-size: 16px;
-	}
-	
-	/* 特定于.content类的滚动条样式 */
-	.content::-webkit-scrollbar {
-		width: 0px; /* 可以设置不同的宽度 */
 	}
 }
