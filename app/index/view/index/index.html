@@ -37,7 +37,7 @@
 <header class="site-header">
   <div class="title">拾贝</div>
   <hr class="hr" />
-  <div class="discription">生命如火，燃烧不息；心灵如潮，折腾不止。</div>
+  <div class="discription"></div>
   <hr class="hr">
 </header>
 
@@ -80,6 +80,61 @@
     window.location.href =
       'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
       encodeURIComponent(window.location.href);
+</script>
+
+<script>
+  var texts = [
+    "生命如火，燃烧不息；心灵如潮，折腾不止。",
+    "时间是一笔贷款，我们永远无法偿还。",
+    "梦想是现实的先导。",
+    "人生就像一场马拉松，不在乎速度，而在乎坚持。",
+    "每一个不曾起舞的日子，都是对生命的辜负。",
+    "只有那些勇敢追求梦想的人，才能到达成功的彼岸。",
+    "不经历风雨，怎么见彩虹。",
+    "生活不是等待风暴过去，而是学会在雨中跳舞。",
+    "世上无难事，只怕有心人。",
+    "梦想，是心灵的翅膀，带着我们飞向未知的远方。",
+    "人生没有彩排，每一天都是现场直播。",
+    "时间是最好的老师，但遗憾的是，它最终会杀死所有的学生。",
+    "不要等待机会，而要创造机会。",
+    "人生最大的错误是不断担心会犯错。",
+    "成功是一种观念，它始于内心的信仰。",
+    "生活就像海洋，只有意志坚强的人，才能到达彼岸。",
+    "勇敢是恐惧之后的选择。",
+    "知识改变命运，学习成就未来。",
+    "人生最重要的不是所站的位置，而是所朝的方向。",
+    "乐观是一种力量，它能够让不可能变为可能。",
+    "人生如逆旅，我亦是行人。",
+    "只有那些敢于面对困难的人，才能最终战胜困难。",
+    "信念是成功的起点，坚持是成功的终点。",
+    "生活不是要超越别人，而是要超越自己。"
+  ];
+  var index = 0;
+  var currentTextIndex = 0; // 当前文本索引
+  var speed = 200; // 打字速度，数值越小，速度越快
+  var delay = 1500; // 等待时间，1000毫秒 = 1秒
+
+  function typeWriter() {
+    if (index < texts[currentTextIndex].length) {
+      document.querySelector('.discription').innerHTML += texts[currentTextIndex].charAt(index);
+      index++;
+      setTimeout(typeWriter, speed);
+    } else {
+      // 当当前文本完全显示后，等待1秒，然后重置index并清空内容，开始下一次循环
+      setTimeout(function() {
+        index = 0;
+        document.querySelector('.discription').innerHTML = '';
+        currentTextIndex = Math.floor(Math.random() * texts.length); // 随机选择一个文本
+        typeWriter(); // 重新开始循环
+      }, delay);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // 页面加载完成后，随机选择一个文本并开始打字效果
+    currentTextIndex = Math.floor(Math.random() * texts.length);
+    typeWriter();
+  });
 </script>
 
 </body>

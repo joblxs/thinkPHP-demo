@@ -32,6 +32,15 @@ html, body {
 .site-header .discription{
     font-size: 20px;
     margin: 20px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff); /* 渐变色 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* 文字颜色设置为透明 */
+    animation: flicker 1.5s infinite alternate; /* 添加闪烁效果 */
+}
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 #canvas {
