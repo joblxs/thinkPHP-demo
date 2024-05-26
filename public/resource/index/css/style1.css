@@ -82,24 +82,22 @@ html, body {
 	background-position: center bottom;
 }
 .content{
-	-moz-user-select: none;
--webkit-user-select: none;
--ms-user-select: none;
--khtml-user-select: none;
-user-select: none;
-	text-align: center;
-	color: #fff;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    text-align: center;
+    color: #fff;
     position: absolute;
     left: 50%;
     top: 45%;
 	transform: translate(-50%,-50%);
 	z-index:9999;
 	height: 40%;
-}
-.content {
 	opacity: 0.15;
-	transition: opacity 2s ease;
-	overflow-y: scroll;
+    transition: opacity 2s ease;
+    overflow-y: scroll;
 }
 	
 /* 特定于.content类的滚动条样式 */
@@ -108,9 +106,6 @@ user-select: none;
 }
 .content:hover {
 	opacity: 1.5;
-}
-.cover-navigation {
-	margin: 30px;
 }
 
 nav {
@@ -147,11 +142,12 @@ nav {
 }
 .navigation__item a:hover {
     color: #FFF;
-    background: #FF7F00;
-    border-color: #FF7F00;
+    /* background: #FF7F00; */
+    /* border-color: #FF7F00; */
     opacity: 1;
     /* transition: all .3s; */
 	transform: scale(1.2); /* 鼠标悬停时放大到1.2倍 */
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 添加白色光晕 */
 }
 ol, ul {
 	list-style: none;
@@ -183,8 +179,15 @@ ol, ul {
 
 @media (max-width: 768px) {
 	.content {
-		width: 90%;
+		left: 0;
+		transform: translate(0,0);
 		opacity: 1;
+		padding: 0 2%;
+		text-align: center;
+		color: #fff;
+		position: absolute;
+		top: 26%;
+		height: 65%;
 	}
 	.navigation {
 		flex-direction: column;
