@@ -83,10 +83,10 @@ html, body {
 }
 .content{
 	-moz-user-select: none;
--webkit-user-select: none;
--ms-user-select: none;
--khtml-user-select: none;
-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
 	text-align: center;
 	color: #fff;
     position: absolute;
@@ -98,6 +98,7 @@ user-select: none;
 	opacity: 0.25;
 	transition: opacity 2s ease;
 	overflow-y: scroll;
+	padding-top: 1%;
 }
 	
 /* 特定于.content类的滚动条样式 */
@@ -121,7 +122,7 @@ nav {
 .navigation__item {
     display: inline-block;
     /* line-height: 1em; */
-    padding: 0.4em;
+    padding: 0.6em;
 }
 .navigation__item a {
     position: relative;
@@ -141,13 +142,26 @@ nav {
     display: inline-block; /* 使a标签可以应用transform属性 */
 }
 .navigation__item a:hover {
-    color: #FFF;
+    color: #ffffff;
     /* background: #FF7F00; */
     /* border-color: #FF7F00; */
     opacity: 1;
     /* transition: all .3s; */
 	transform: scale(1.2); /* 鼠标悬停时放大到1.2倍 */
-	box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 添加白色光晕 */
+}
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 7px rgba(255, 255, 255, 0);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+a.twinkle {
+	animation: twinkle 3s infinite;
 }
 ol, ul {
 	list-style: none;

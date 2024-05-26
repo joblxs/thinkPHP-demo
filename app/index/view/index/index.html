@@ -83,6 +83,22 @@
 </script>
 
 <script>
+  // 随机闪烁
+  window.addEventListener('DOMContentLoaded', (event) => {
+    // 获取所有的导航项中的<a>标签
+    const links = document.querySelectorAll('.navigation__item a');
+
+    // 为每个<a>标签设置随机的动画延迟
+    links.forEach((link, index) => {
+      // 设置随机延迟，范围从0到3秒之间
+      const randomDelay = Math.random() * 3;
+      link.style.animationDelay = `${randomDelay}s`;
+      link.classList.add('twinkle');
+    });
+  });
+</script>
+
+<script>
   var texts = [
     "生命如火，燃烧不息；心灵如潮，折腾不止。",
     "时间是一笔贷款，我们永远无法偿还。",
