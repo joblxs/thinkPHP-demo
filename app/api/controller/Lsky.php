@@ -163,6 +163,7 @@ class Lsky extends BaseController
             $imageArr = json_decode($images);
             if (count($imageArr) > 0) {
                 $randomImage = $imageArr[array_rand($imageArr)];
+                return $randomImage;
                 return redirect($randomImage);
             }
             return json($response->status());
