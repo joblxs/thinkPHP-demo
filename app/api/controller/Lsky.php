@@ -110,7 +110,7 @@ class Lsky extends BaseController
     }
 
     #[
-        Apidoc\Title("返回一张随机图片地址"),
+        Apidoc\Title("返回一张随机图片"),
         Apidoc\Tag("兰空"),
         Apidoc\Method("GET"),
         Apidoc\Url("/api/lsky/randomImages"),
@@ -163,7 +163,6 @@ class Lsky extends BaseController
             $imageArr = json_decode($images);
             if (count($imageArr) > 0) {
                 $randomImage = $imageArr[array_rand($imageArr)];
-                return $randomImage;
                 return redirect($randomImage);
             }
             return json($response->status());
