@@ -110,7 +110,7 @@ class Lsky extends BaseController
     }
 
     #[
-        Apidoc\Title("返回一张随机图片"),
+        Apidoc\Title("返回一张随机图片地址"),
         Apidoc\Tag("兰空"),
         Apidoc\Method("GET"),
         Apidoc\Url("/api/lsky/randomImages"),
@@ -144,37 +144,26 @@ class Lsky extends BaseController
             $album_id = $album[$random_key]['id'];
         }
         try {
-            $response = Http::asJson()->withHeaders([
-                'Authorization' => self::$token
-            ])->get(self::$apiUrl . "/images", [
-                'page' => 1, 'order' => 'newest', 'album_id' => $album_id
-            ]);
-
-            $imageArr = [];
-            if ($response->status() == 200) {
-                $data = $response->json()->data->data;
-                foreach ($data as $key => $value) {
-                    array_push($imageArr, $value->links->url);
+            $images = cache("img".$album_id);
+            if (empty($images)) {
+                $response = Http::asJson()->withHeaders([
+                    'Authorization' => self::$token
+                ])->get(self::$apiUrl . "/images", [
+                    'page' => 1, 'order' => 'newest', 'album_id' => $album_id
+                ]);
+                $imageArr = [];
+                if ($response->status() == 200) {
+                    $data = $response->json()->data->data;
+                    foreach ($data as $key => $value) {
+                        array_push($imageArr, $value->links->url);
+                    }
+                    $images = \app\api\model\Lsky::setCatch($album_id, json_encode($imageArr));
                 }
-                $randomImage = '';
-                if (count($imageArr) > 0) {
-                    $randomImage = $imageArr[array_rand($imageArr)];
-                }
+            }
+            $imageArr = json_decode($images);
+            if (count($imageArr) > 0) {
+                $randomImage = $imageArr[array_rand($imageArr)];
                 return redirect($randomImage);
-//                ob_start(); // 开始输出缓冲
-//
-//                $response = Http::asJson()->get($randomImage);
-//                $image_data = $response->body();
-//                $image = imagecreatefromstring($image_data);
-//                // 输出调整尺寸后的图片
-//                header('Content-Type: image/webp');
-//                imagewebp($image);
-//                // 释放资源
-//                imagedestroy($image);
-//
-//                $output = ob_get_clean(); // 获取输出缓冲并清空
-//                echo $output; // 输出缓冲内容（如果有的话）
-//                return redirect($randomImage);
             }
             return json($response->status());
         } catch (ErrorException $e) {
@@ -222,28 +211,31 @@ class Lsky extends BaseController
             $album_id = $album[$random_key]['id'];
         }
         try {
-            $response = Http::asJson()->withHeaders([
-                'Authorization' => self::$token
-            ])->get(self::$apiUrl . "/images", [
-                'page' => 1, 'order' => 'newest', 'album_id' => $album_id
-            ]);
-
-            $imageArr = [];
-            if ($response->status() == 200) {
-                $data = $response->json()->data->data;
-                foreach ($data as $key => $value) {
-                    array_push($imageArr, $value->links->url);
+            $images = cache("img".$album_id);
+            if (empty($images)) {
+                $response = Http::asJson()->withHeaders([
+                    'Authorization' => self::$token
+                ])->get(self::$apiUrl . "/images", [
+                    'page' => 1, 'order' => 'newest', 'album_id' => $album_id
+                ]);
+                $imageArr = [];
+                if ($response->status() == 200) {
+                    $data = $response->json()->data->data;
+                    foreach ($data as $key => $value) {
+                        array_push($imageArr, $value->links->url);
+                    }
+                    $images = \app\api\model\Lsky::setCatch($album_id, json_encode($imageArr));
                 }
-                $randomImage = '';
-                if (count($imageArr) > 0) {
-                    $randomImage = $imageArr[array_rand($imageArr)];
-                }
+            }
+            $imageArr = json_decode($images);
+            if (count($imageArr) > 0) {
+                $randomImage = $imageArr[array_rand($imageArr)];
                 ob_start(); // 开始输出缓冲
-                $this->sizeImages($randomImage, $width, $height);
+                \app\api\model\Lsky::sizeImages($randomImage, $width, $height);
                 $output = ob_get_clean(); // 获取输出缓冲并清空
                 echo $output; // 输出缓冲内容（如果有的话）
-//                return redirect($randomImage);
             }
+
             return json($response->status());
         } catch (ErrorException $e) {
             var_dump($e);
@@ -268,57 +260,12 @@ class Lsky extends BaseController
         $height = $request->get('height', 0);
         try {
             ob_start(); // 开始输出缓冲
-            $this->sizeImages($url, $width, $height);
+            \app\api\model\Lsky::sizeImages($url, $width, $height);
             $output = ob_get_clean(); // 获取输出缓冲并清空
             echo $output; // 输出缓冲内容（如果有的话）
         } catch (ErrorException $e) {
             var_dump($e);
             return $e;
-        }
-    }
-
-    /**
-     * 返回指定尺寸图片
-     * @param $image_url
-     * @param $new_width
-     * @param $new_height
-     * @return void
-     */
-    public function sizeImages($image_url, $new_width = 200, $new_height = 0) {
-        if (empty($image_url)) {
-            header('HTTP/1.1 500 Internal Server Error');
-            echo "Error loading image.";
-            exit; // 退出脚本
-        }
-        $response = Http::asJson()->get($image_url);
-        // 确保$response是二进制数据
-        if ($response->successful()) {
-            $image_data = $response->body();
-            $image = imagecreatefromstring($image_data);
-            // 原始图片尺寸
-            $original_width = imagesx($image);
-            $original_height = imagesy($image);
-            // 新图片尺寸
-            if ($new_height == 0) {
-//                $new_height = ($original_height / $original_width) * $new_width; // 保持宽高比
-                $new_height = (int)($original_height * $new_width / $original_width); // 保持宽高比
-            }
-            // 创建一个新图片资源，用于调整尺寸
-            $resized_image = imagecreatetruecolor($new_width, $new_height);
-            // 调整图片尺寸
-            imagecopyresampled($resized_image, $image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
-            // 输出调整尺寸后的图片
-            header('Content-Type: image/webp');
-            imagewebp($resized_image);
-            // 释放资源
-            imagedestroy($image);
-            imagedestroy($resized_image);
-            exit; // 退出脚本，防止进一步执行
-        } else {
-            // 处理错误情况，例如返回一个错误图片或显示错误消息
-            header('HTTP/1.1 500 Internal Server Error');
-            echo "Error loading image.";
-            exit; // 退出脚本
         }
     }
 }
