@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>导航</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/resource/layui/css/layui.css" rel="stylesheet">
+  <link href="/resource/nav/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!--左侧栏-->
+    <div class="nav">
+        <div class="nav-title">个人导航</div>
+        <div class="nav-tree">
+            <ul class="layui-nav layui-nav-tree" id="categories-1">
+                <!-- <li class="layui-nav-item">
+                    <a href="javascript:;">个人站点</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">工具箱</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" data-filter="2" data-tab="3">常用工具</a></dd>
+                        <dd><a href="javascript:;" data-filter="2" data-tab="4">在线工具箱</a></dd>
+                        <dd><a href="javascript:;" data-filter="2" data-tab="5">工具箱下载</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;">菜单2</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">菜单3</a></li> -->
+            </ul>
+        </div>
+    </div>
+
+    <!--右侧主体-->
+    <div class="main">
+        <div class="main-banner"></div>
+        <div class="main-search"></div>
+        <div class="main-site">
+            <div class="layui-tab layui-tab-brief" lay-filter="1">
+                <h4>个人站点</h4>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15" id="link-1">
+                                <!-- <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">拾贝</div>
+                                        <div class="layui-card-body">
+                                            欢迎光临我的小破站
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">卡片面板</div>
+                                        <div class="layui-card-body">
+                                            结合 layui 的栅格系统，轻松实现响应式布局121212123312434235
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab layui-tab-brief" lay-filter="2">
+                <h4>工具箱</h4>
+                <ul class="layui-tab-title" id="tab-title">
+                    <li class="layui-this" lay-id="3">常用工具</li>
+                    <li lay-id="4">在线工具箱</li>
+                    <li lay-id="5">工具箱下载</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">拾贝</div>
+                                        <div class="layui-card-body">
+                                            欢迎光临我的小破站
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">卡片面板</div>
+                                        <div class="layui-card-body">
+                                            结合 layui 的栅格系统，轻松实现响应式布局121212123312434235
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">内容-2</div>
+                    <div class="layui-tab-item">内容-3</div>
+                </div>
+            </div>
+        </div>
+        <div class="main-footer"></div>
+    </div>
+<script src="/resource/layui/layui.js"></script>
+<script>
+    layui.use(function(){
+        var element = layui.element;
+        var $ = layui.$;
+        $.ajax({
+            url:"/api/nav/getCate",
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                let res = data
+                for (const item of res) {
+                    $('#categories-1').append(`
+                        <li class="layui-nav-item" id='categories-2'>
+                            <a href="javascript:;">${item.name}</a>
+                        </li>
+                    `);
+                    for (const k of item.children) {
+                        if (k.children) {
+                            
+                        } else {
+                            console.log('k', k);
+                            $('#link-1').append(`
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">${k.name}</div>
+                                        <div class="layui-card-body">
+                                            ${k.desc}
+                                        </div>
+                                    </div>
+                                </div>
+                            `)
+                        }
+                    }
+                }
+            }
+        })
+
+
+
+
+        element.render('nav');
+
+        // 获取所有的导航项
+        var navItems = document.querySelectorAll('.layui-nav-child dd');
+        // 为每个导航项添加点击事件
+        navItems.forEach(function(navItem, index){
+            navItem.addEventListener('click', function(){
+                var targetFilter = this.querySelector('a').getAttribute('data-filter');
+                // 获取当前点击的导航项的data-tab属性值
+                var targetTab = this.querySelector('a').getAttribute('data-tab');
+                // 切换到对应的标签页
+                element.tabChange(targetFilter, targetTab);
+            });
+        });
+    });
+</script>
+</body>
+</html>

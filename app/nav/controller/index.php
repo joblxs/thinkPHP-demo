@@ -8,6 +8,6 @@ class Index extends BaseController
 {
     public function index()
     {
-        return '导航';
+        return view();
     }
 }
