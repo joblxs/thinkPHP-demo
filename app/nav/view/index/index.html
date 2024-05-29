@@ -111,33 +111,29 @@
             type:"get",
             dataType:"json",
             success:function(data){
-                let res = data
+                let res = data;
                 for (const item of res) {
                     $('#categories-1').append(`
                         <li class="layui-nav-item" id='categories-${item.id}'>
                             <a href="javascript:;">${item.name}</a>
                         </li>
                     `);
-                    for (const [k,v] of item.children.entries()) {
-                        if (v.children) {
-                            console.log('v', v);
-                            let categories = '#categories' + item.id
-                            console.log('item.id', categories);
-                            $(categories).append(`
+                    // 假设item.children是一个数组
+                    for (const child of item.children) {
+                        if (child.children) {
+                            $('#categories-' + item.id).append(`
                                 <dl class="layui-nav-child">
                                     <dd><a href="javascript:;" data-filter="2" data-tab="3">常用工具</a></dd>
+                                    <!-- 这里可能需要根据child.children来动态生成更多的<dd>和<a> -->
                                 </dl>
                             `);
-                            $('#tab-title').append(`
-                                <li lay-id="${v.id}">${v.name}</li>
-                            `)
                         } else {
                             $('#link-1').append(`
                                 <div class="layui-col-md6">
                                     <div class="layui-card">
-                                        <div class="layui-card-header">${v.name}</div>
+                                        <div class="layui-card-header">${child.name}</div>
                                         <div class="layui-card-body">
-                                            ${v.desc}
+                                            ${child.desc}
                                         </div>
                                     </div>
                                 </div>
@@ -145,6 +141,9 @@
                         }
                     }
                 }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX请求失败：" + error);
             }
         })
 
