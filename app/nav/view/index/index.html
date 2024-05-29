@@ -67,9 +67,9 @@
             <div class="layui-tab layui-tab-brief" lay-filter="2">
                 <h4>工具箱</h4>
                 <ul class="layui-tab-title" id="tab-title">
-                    <li class="layui-this" lay-id="3">常用工具</li>
+                    <!-- <li class="layui-this" lay-id="3">常用工具</li>
                     <li lay-id="4">在线工具箱</li>
-                    <li lay-id="5">工具箱下载</li>
+                    <li lay-id="5">工具箱下载</li> -->
                 </ul>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
@@ -114,21 +114,30 @@
                 let res = data
                 for (const item of res) {
                     $('#categories-1').append(`
-                        <li class="layui-nav-item" id='categories-2'>
+                        <li class="layui-nav-item" id='categories-${item.id}'>
                             <a href="javascript:;">${item.name}</a>
                         </li>
                     `);
-                    for (const k of item.children) {
-                        if (k.children) {
-                            
+                    for (const [k,v] of item.children.entries()) {
+                        if (v.children) {
+                            console.log('v', v);
+                            let categories = '#categories' + item.id
+                            console.log('item.id', categories);
+                            $(categories).append(`
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;" data-filter="2" data-tab="3">常用工具</a></dd>
+                                </dl>
+                            `);
+                            $('#tab-title').append(`
+                                <li lay-id="${v.id}">${v.name}</li>
+                            `)
                         } else {
-                            console.log('k', k);
                             $('#link-1').append(`
                                 <div class="layui-col-md6">
                                     <div class="layui-card">
-                                        <div class="layui-card-header">${k.name}</div>
+                                        <div class="layui-card-header">${v.name}</div>
                                         <div class="layui-card-body">
-                                            ${k.desc}
+                                            ${v.desc}
                                         </div>
                                     </div>
                                 </div>
