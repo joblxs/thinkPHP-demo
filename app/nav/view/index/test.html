@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>导航</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/resource/layui/css/layui.css" rel="stylesheet">
+  <link href="/resource/nav/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!--左侧栏-->
+    <div class="nav">
+        <div class="nav-title">个人导航</div>
+        <div class="nav-tree">
+            <ul class="layui-nav layui-nav-tree">
+                {volist name="nav" id="item" key="k"}
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">{$item.name}</a>
+                        <dl class="layui-nav-child">
+                        {volist name="item.children" id="item1" key="k1"}
+                        {if isset($item1.children)}
+                        <dd><a href="javascript:;" data-filter="{$k}" data-tab="{$k1}">{$item1.name}</a></dd>
+                        {/if}
+                        {/volist}
+                        </dl>
+                    </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+
+    <!--右侧主体-->
+    <div class="main">
+        <div class="main-banner"></div>
+        <div class="main-search"></div>
+        <div class="main-site">
+            {volist name="nav" id="item" key="k"}
+            <div class="layui-tab layui-tab-brief" lay-filter="{$k}">
+                <h4>{$item.name}</h4>
+                <ul class="layui-tab-title" id="tab-title">
+                    {volist name="item.children" id="item1" key="k1"}
+                    {if isset($item1.children)}
+                    <li class="{eq name="$k1" value="1"}layui-this{/eq}" lay-id="{$k1}">{$item1.name}</li>
+                    {/if}
+                    {/volist}
+                </ul>
+                <div class="layui-tab-content">
+                    {volist name="item.children" id="item1" key="k1"}
+                    {if !isset($item1.children)}
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">{$item1.name}</div>
+                                        <div class="layui-card-body">
+                                            {$item1.desc}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {else/}
+                    {volist name="item1.children" id="item2" key="k2"}
+                    <div class="layui-tab-item {eq name="$k2" value="1"}layui-show{/eq}">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                
+                                <div class="layui-col-md6">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">{$item2.name}</div>
+                                        <div class="layui-card-body">
+                                            {$item2.desc}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <div class="main-footer"></div>
+    </div>
+<script src="/resource/layui/layui.js"></script>
+<script>
+    layui.use(function(){
+        var element = layui.element;
+        element.render('nav');
+
+        // 获取所有的导航项
+        var navItems = document.querySelectorAll('.layui-nav-child dd');
+        // 为每个导航项添加点击事件
+        navItems.forEach(function(navItem, index){
+            navItem.addEventListener('click', function(){
+                var targetFilter = this.querySelector('a').getAttribute('data-filter');
+                // 获取当前点击的导航项的data-tab属性值
+                var targetTab = this.querySelector('a').getAttribute('data-tab');
+                // 切换到对应的标签页
+                element.tabChange(targetFilter, targetTab);
+            });
+        });
+    });
+</script>
+</body>
+</html>
