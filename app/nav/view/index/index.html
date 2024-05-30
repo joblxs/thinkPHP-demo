@@ -54,7 +54,7 @@
                     <div class="layui-bg-gray" style="padding: 16px;">
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item.id]" id="v" key="key"}
-                            <div class="layui-col-md6">
+                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg3">
                                 <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
                                     <div class="layui-card">
                                         <div class="layui-card-left">
@@ -80,7 +80,7 @@
                     <div class="layui-bg-gray" style="padding: 16px;">
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item1.id]" id="v" key="key"}
-                            <div class="layui-col-md6">
+                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg3">
                                 <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
                                     <div class="layui-card">
                                         <div class="layui-card-left">
@@ -112,7 +112,7 @@
                     <div class="layui-bg-gray" style="padding: 16px;">
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item.id]" id="v" key="key"}
-                            <div class="layui-col-md6">
+                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg3">
                                 <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
                                     <div class="layui-card">
                                         <div class="layui-card-left">
@@ -148,7 +148,7 @@
         // 获取所有的导航项
         var navItems = document.querySelectorAll('.layui-nav-child dd');
         // 为每个导航项添加点击事件
-        navItems.forEach(function(navItem, index){
+        navItems.forEach(function(navItem, index){ 
             navItem.addEventListener('click', function(){
                 var targetFilter = this.querySelector('a').getAttribute('data-filter');
                 // 获取当前点击的导航项的data-tab属性值

@@ -58,12 +58,6 @@ html, body {
     overflow: hidden;     /* 溢出部分隐藏 */
     text-overflow: ellipsis; /* 显示省略号 */ 改为显示两行
 }
-/* 卡片宽度 */
-.layui-col-md6 {
-    width: 16.666667%;
-    max-width: 16.666667%
-}
-
 /* 左侧栏 */
 .nav {
     width: 200px;
