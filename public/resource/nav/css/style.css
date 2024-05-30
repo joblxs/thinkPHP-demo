@@ -58,6 +58,12 @@ html, body {
     overflow: hidden;     /* 溢出部分隐藏 */
     text-overflow: ellipsis; /* 显示省略号 */ 改为显示两行
 }
+.layui-nav-a {
+    margin-left: 15px;
+}
+.layui-icon {
+    margin-right: 15px;
+}
 /* 左侧栏 */
 .nav {
     width: 200px;

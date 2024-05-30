@@ -12,16 +12,16 @@
 <body>
 <!--左侧栏-->
 <div class="nav">
-    <div class="nav-title">个人导航</div>
+    <div class="nav-title"><i class="layui-icon layui-icon-website"></i>个人导航</div>
     <div class="nav-tree">
         <ul class="layui-nav layui-nav-tree">
             {volist name="cat" id="item" key="k"}
             <li class="layui-nav-item" lay-unselect>
-                <a href="#categories{$item.id}">{$item.name}</a>
+                <a href="#categories{$item.id}"><i class="layui-icon layui-icon-face-smile"></i>{$item.name}</a>
                 {if isset($item.children)}
                 <dl class="layui-nav-child">
                     {volist name="item.children" id="item1" key="k1"}
-                    <dd lay-unselect><a href="javascript:;" data-filter="{$item1.pid}" data-tab="{$item1.id}">{$item1.name}</a></dd>
+                    <dd lay-unselect><a class="layui-nav-a" href="javascript:;" data-filter="{$item1.pid}" data-tab="{$item1.id}"><i class="layui-icon layui-icon-face-smile"></i>{$item1.name}</a></dd>
                     {/volist}
                 </dl>
                 {/if}
@@ -38,7 +38,7 @@
     <div class="main-site">
         {volist name="cat" id="item" key="k"}
         <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">
-            <h4 id="categories{$item.id}">{$item.name}</h4>
+            <h4 id="categories{$item.id}"><i class="layui-icon layui-icon-face-smile"></i>{$item.name}</h4>
             {if isset($item.children)}
             <ul class="layui-tab-title">
                 {if isset($link[$item.id])}
