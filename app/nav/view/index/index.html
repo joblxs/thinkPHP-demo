@@ -55,12 +55,14 @@
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item.id]" id="v" key="key"}
                             <div class="layui-col-md6">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">{$v.name}</div>
-                                    <div class="layui-card-body">
-                                        {$v.desc}
+                                <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">{$v.name}</div>
+                                        <div class="layui-card-body">
+                                            {$v.desc}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             {/volist}
                         </div>
@@ -74,12 +76,14 @@
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item1.id]" id="v" key="key"}
                             <div class="layui-col-md6">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">{$v.name}</div>
-                                    <div class="layui-card-body">
-                                        {$v.desc}
+                                <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">{$v.name}</div>
+                                        <div class="layui-card-body">
+                                            {$v.desc}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             {/volist}
                         </div>
@@ -99,12 +103,14 @@
                         <div class="layui-row layui-col-space15">
                             {volist name="link[$item.id]" id="v" key="key"}
                             <div class="layui-col-md6">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">{$v.name}</div>
-                                    <div class="layui-card-body">
-                                        {$v.desc}
+                                <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">{$v.name}</div>
+                                        <div class="layui-card-body">
+                                            {$v.desc}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             {/volist}
                         </div>
@@ -124,7 +130,6 @@
         var element = layui.element;
         var $ = layui.$;
         element.render('nav');
-
         // 获取所有的导航项
         var navItems = document.querySelectorAll('.layui-nav-child dd');
         // 为每个导航项添加点击事件
@@ -136,6 +141,17 @@
                 // 切换到对应的标签页
                 element.tabChange(targetFilter, targetTab);
             });
+        });
+
+        // 给带有tips类的链接绑定鼠标悬浮提示事件
+        $('.tips').on('mouseenter', function(){
+            var tipsText = $(this).attr('lay-tips');
+            // layer.tips(tipsText, this);
+            layer.tips(tipsText, this, {
+                tips: [3, '#16b777']
+            });
+        }).on('mouseleave', function(){
+            layer.closeAll('tips');
         });
     });
 </script>
