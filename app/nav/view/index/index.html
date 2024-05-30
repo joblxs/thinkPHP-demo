@@ -14,20 +14,19 @@
     <div class="nav">
         <div class="nav-title">个人导航</div>
         <div class="nav-tree">
-            <ul class="layui-nav layui-nav-tree" id="categories-1">
-                <!-- <li class="layui-nav-item">
-                    <a href="javascript:;">个人站点</a>
-                </li>
+            <ul class="layui-nav layui-nav-tree">
+                {volist name="nav" id="item" key="k"}
                 <li class="layui-nav-item">
-                    <a href="javascript:;">工具箱</a>
+                    <a href="javascript:;">{$item.name}</a>
+                    {if $item.type == "categories"}
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-filter="2" data-tab="3">常用工具</a></dd>
-                        <dd><a href="javascript:;" data-filter="2" data-tab="4">在线工具箱</a></dd>
-                        <dd><a href="javascript:;" data-filter="2" data-tab="5">工具箱下载</a></dd>
+                    {volist name="item.children" id="item1" key="k1"}
+                        <dd><a href="javascript:;" data-filter="{$k}" data-tab="{$k1}">{$item1.name}</a></dd>
+                    {/volist}
                     </dl>
+                    {/if}
                 </li>
-                <li class="layui-nav-item"><a href="javascript:;">菜单2</a></li>
-                <li class="layui-nav-item"><a href="javascript:;">菜单3</a></li> -->
+                {/volist}
             </ul>
         </div>
     </div>
@@ -37,67 +36,58 @@
         <div class="main-banner"></div>
         <div class="main-search"></div>
         <div class="main-site">
-            <div class="layui-tab layui-tab-brief" lay-filter="1">
-                <h4>个人站点</h4>
+            {volist name="nav" id="item" key="k"}
+            <div class="layui-tab layui-tab-brief" lay-filter="{$k}">
+                <h4>{$item.name}</h4>
+                {if $item.type == "categories"}
+                <ul class="layui-tab-title">
+                    {volist name="item.children" id="item1" key="k1"}
+                    <li class="{eq name="$k1" value="1"}layui-this{/eq}" lay-id="{$k1}">{$item1.name}</li>
+                    {/volist}
+                </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">
+                    {volist name="item.children" id="item1" key="k1"}
+                    <div class="layui-tab-item {eq name="$k1" value="1"}layui-show{/eq}">
                         <div class="layui-bg-gray" style="padding: 16px;">
-                            <div class="layui-row layui-col-space15" id="link-1">
-                                <!-- <div class="layui-col-md6">
+                            <div class="layui-row layui-col-space15">
+                                {volist name="item1.children" id="item4" key="k4"}
+                                <div class="layui-col-md6">
                                     <div class="layui-card">
-                                        <div class="layui-card-header">拾贝</div>
+                                        <div class="layui-card-header">{$item4.name}</div>
                                         <div class="layui-card-body">
-                                            欢迎光临我的小破站
+                                            {$item4.desc}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-md6">
-                                    <div class="layui-card">
-                                        <div class="layui-card-header">卡片面板</div>
-                                        <div class="layui-card-body">
-                                            结合 layui 的栅格系统，轻松实现响应式布局121212123312434235
-                                        </div>
-                                    </div>
-                                </div> -->
+                                {/volist}
                             </div>
                         </div>
                     </div>
+                    {/volist}
                 </div>
-            </div>
-            <div class="layui-tab layui-tab-brief" lay-filter="2">
-                <h4>工具箱</h4>
-                <ul class="layui-tab-title" id="tab-title">
-                    <!-- <li class="layui-this" lay-id="3">常用工具</li>
-                    <li lay-id="4">在线工具箱</li>
-                    <li lay-id="5">工具箱下载</li> -->
-                </ul>
+                {/if}
+                {if $item.type == "link"}
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
                         <div class="layui-bg-gray" style="padding: 16px;">
                             <div class="layui-row layui-col-space15">
+                                {volist name="item.children" id="item2" key="k2"}
                                 <div class="layui-col-md6">
                                     <div class="layui-card">
-                                        <div class="layui-card-header">拾贝</div>
+                                        <div class="layui-card-header">{$item2.name}</div>
                                         <div class="layui-card-body">
-                                            欢迎光临我的小破站
+                                            {$item2.desc}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-md6">
-                                    <div class="layui-card">
-                                        <div class="layui-card-header">卡片面板</div>
-                                        <div class="layui-card-body">
-                                            结合 layui 的栅格系统，轻松实现响应式布局121212123312434235
-                                        </div>
-                                    </div>
-                                </div>
+                                {/volist}
                             </div>
                         </div>
                     </div>
-                    <div class="layui-tab-item">内容-2</div>
-                    <div class="layui-tab-item">内容-3</div>
                 </div>
+                {/if}
             </div>
+            {/volist}
         </div>
         <div class="main-footer"></div>
     </div>
@@ -106,50 +96,6 @@
     layui.use(function(){
         var element = layui.element;
         var $ = layui.$;
-        $.ajax({
-            url:"/api/nav/getCate",
-            type:"get",
-            dataType:"json",
-            success:function(data){
-                let res = data;
-                for (const item of res) {
-                    $('#categories-1').append(`
-                        <li class="layui-nav-item" id='categories-${item.id}'>
-                            <a href="javascript:;">${item.name}</a>
-                        </li>
-                    `);
-                    // 假设item.children是一个数组
-                    for (const child of item.children) {
-                        if (child.children) {
-                            $('#categories-' + item.id).append(`
-                                <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;" data-filter="2" data-tab="3">常用工具</a></dd>
-                                    <!-- 这里可能需要根据child.children来动态生成更多的<dd>和<a> -->
-                                </dl>
-                            `);
-                        } else {
-                            $('#link-1').append(`
-                                <div class="layui-col-md6">
-                                    <div class="layui-card">
-                                        <div class="layui-card-header">${child.name}</div>
-                                        <div class="layui-card-body">
-                                            ${child.desc}
-                                        </div>
-                                    </div>
-                                </div>
-                            `)
-                        }
-                    }
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX请求失败：" + error);
-            }
-        })
-
-
-
-
         element.render('nav');
 
         // 获取所有的导航项
