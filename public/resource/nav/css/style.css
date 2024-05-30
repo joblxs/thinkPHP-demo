@@ -64,25 +64,13 @@ html, body {
 .layui-icon {
     margin-right: 15px;
 }
-/* 左侧栏 */
-.nav {
-    width: 200px;
-    position: fixed;
-    z-index: 999;
-    height: 100%;
-    background-color: #000;
-}
-.nav .nav-title {
-    font-size: 20px;
+.layui-layout-admin .layui-footer {
+    background-color: #23292e;
     text-align: center;
-    padding: 10px;
 }
-
-/* 右侧主体 */
 .main {
-    margin-left: 200px;
-    height: 100%;
     overflow-y: scroll;
+    padding: 10px;
 }
 .main .main-site h4 {
     padding: 0 20px;
