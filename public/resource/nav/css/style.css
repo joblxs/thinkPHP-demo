@@ -75,7 +75,12 @@ html, body {
 /* 右侧主体 */
 .main {
     margin-left: 200px;
+    height: 100%;
+    overflow-y: scroll;
 }
-.main .main-site {
-    padding: 0 30px;
+.main .main-site h4 {
+    padding: 0 20px;
+}
+.main .main-site ul {
+    padding: 0 20px;
 }

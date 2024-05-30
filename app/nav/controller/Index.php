@@ -30,7 +30,12 @@ class Index extends BaseController
                         'name' => '常用工具2'
                     ]
                 ]
-            ]
+            ],
+            [
+                'id' => 5,
+                'pid' => 0,
+                'name' => 'ai',
+            ],
         ];
         $link = [
             1 => [
@@ -84,6 +89,126 @@ class Index extends BaseController
                 ],
             ],
             2 => [
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 3,
+                    'name' => '拾贝3',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
+                [
+                    'id' => 4,
+                    'name' => '拾贝4',
+                    'desc' => '拾贝，一个专注于个人技术分享的博客。',
+                    'link' => 'https://lxshuai.top/'
+                ],
                 [
                     'id' => 3,
                     'name' => '拾贝3',

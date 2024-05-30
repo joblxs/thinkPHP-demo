@@ -17,7 +17,7 @@
         <ul class="layui-nav layui-nav-tree">
             {volist name="cat" id="item" key="k"}
             <li class="layui-nav-item" lay-unselect>
-                <a href="javascript:;">{$item.name}</a>
+                <a href="#categories{$item.id}">{$item.name}</a>
                 {if isset($item.children)}
                 <dl class="layui-nav-child">
                     {volist name="item.children" id="item1" key="k1"}
@@ -38,7 +38,7 @@
     <div class="main-site">
         {volist name="cat" id="item" key="k"}
         <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">
-            <h4>{$item.name}</h4>
+            <h4 id="categories{$item.id}">{$item.name}</h4>
             {if isset($item.children)}
             <ul class="layui-tab-title">
                 {if isset($link[$item.id])}
