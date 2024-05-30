@@ -21,6 +21,11 @@ html, body {
     display: flex; /* 使用Flexbox布局 */
     align-items: flex-start; /* 垂直方向上对齐顶部 */
     justify-content: space-between; /* 水平方向上，左右两侧留出空间 */
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+.layui-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: translateY(-5px);
 }
 .layui-card-left {
     flex: 0 0 auto; /* 固定宽度，不随内容变化 */
