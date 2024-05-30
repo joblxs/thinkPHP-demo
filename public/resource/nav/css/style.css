@@ -24,37 +24,44 @@ html, body {
 }
 .layui-card-left {
     flex: 0 0 auto; /* 固定宽度，不随内容变化 */
-    margin-right: 20px; /* 图片和右侧内容之间的间距 */
+    /* margin-right: 20px; */
+    width: 30%;
+    line-height: 80px; /* 行高与容器高度相同 */
+    text-align: center; /* 水平居中 */
 }
 
 .layui-card-left img {
-    max-width: 100%; /* 图片最大宽度不超过其容器的宽度 */
-    max-height: 100%; /* 图片最大高度不超过其容器的高度 */
+    width: 50px; /* 图片最大宽度不超过其容器的宽度 */
+    height: 50px; /* 图片最大高度不超过其容器的高度 */
+    border-radius: 50%; /* 设置图片为圆形 */
+    object-fit: cover;  /* 保持图片比例，覆盖整个容器 */
+    vertical-align: middle; /* 垂直居中 */
 }
 
 .layui-card-right {
     flex: 1; /* 右侧内容占据剩余空间 */
     display: flex; /* 内部也使用Flexbox布局 */
     flex-direction: column; /* 子元素垂直排列 */
+    width: 70%;
 }
 .layui-card-header {
     color: #fff !important;
     font-weight: bold;
+    padding: 0 5px;
+    width: 88%;
 }
 .layui-card-body {
     font-size: 12px;
     color: #a6aeb6 !important;
+    padding: 5px;
+    white-space: nowrap; /* 强制文本在一行显示 */
+    overflow: hidden;     /* 溢出部分隐藏 */
+    text-overflow: ellipsis; /* 显示省略号 */ 改为显示两行
 }
 /* 卡片宽度 */
 .layui-col-md6 {
     width: 16.666667%;
     max-width: 16.666667%
-}
-/* 多余文字省略 */
-.layui-card-body {
-    white-space: nowrap; /* 强制文本在一行显示 */
-    overflow: hidden;     /* 溢出部分隐藏 */
-    text-overflow: ellipsis; /* 显示省略号 */
 }
 
 /* 左侧栏 */
