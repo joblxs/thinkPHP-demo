@@ -2,218 +2,224 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>导航</title>
+    <title>拾贝导航</title>
+    <meta name="keywords" content="导航,书签,简洁导航,网址导航,云链接,个人导航,个人书签">
+    <meta name="description" content="拾贝导航，导的不仅是网页链接，更是编程世界的精彩纷呈！">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/resource/layui/css/layui.css" rel="stylesheet">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="https://pic.lxshuai.top/i/2024/05/19/6649a456f32c0.ico">
+
+    <link rel="stylesheet" href="/resource/nav/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="/resource/nav/css/layuimini.css?v=2.0.4.2" media="all">
+    <link rel="stylesheet" href="/resource/nav/css/themes/default.css" media="all">
+    <link rel="stylesheet" href="/resource/nav/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+
     <link href="/resource/nav/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style id="layuimini-bg-color">
+    </style>
 </head>
-<body>
+<body class="layui-layout-body layuimini-all">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <div class="layui-logo layui-hide-xs layui-bg-black"><i class="layui-icon layui-icon-website"></i>个人导航</div>
-        <!-- 头部区域（可配合layui 已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
-            <!-- 移动端显示 -->
-            <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
-                <i class="layui-icon layui-icon-spread-left"></i>
-            </li>
-        </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
-                <i class="layui-icon layui-icon-spread-left"></i>
-            </li>
-            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                <a href="javascript:;">
-                <i class="layui-icon layui-icon-more-vertical"></i>
-                </a>
-            </li>
-        </ul>
+
+    <div class="layui-header header">
+        <div class="layui-logo layuimini-logo"></div>
+
+        <div class="layuimini-header-content">
+            <a>
+                <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
+            </a>
+
+            <!--电脑端头部菜单-->
+            <!-- <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-menu-header-pc layuimini-pc-show">
+            </ul> -->
+
+            <!--手机端头部菜单-->
+            <!-- <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-mobile-show">
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-list-ul"></i> 选择模块</a>
+                    <dl class="layui-nav-child layuimini-menu-header-mobile">
+                    </dl>
+                </li>
+            </ul> -->
+
+            <ul class="layui-nav layui-layout-right">
+
+                <!-- <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
+                </li> -->
+                <!-- <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
+                </li> -->
+                <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
+                </li>
+                <li class="layui-nav-item layuimini-select-bgcolor" lay-unselect>
+                    <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="nav layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <div class="nav-tree">
-                <ul class="layui-nav layui-nav-tree">
-                    {volist name="cat" id="item" key="k"}
-                    <li class="layui-nav-item" lay-unselect>
-                        <a href="#categories{$item.id}"><i class="layui-icon {$item.icon}"></i>{$item.name}</a>
-                        {if isset($item.children) && count($item.children) > 0}
-                        <dl class="layui-nav-child">
-                            {volist name="item.children" id="item1" key="k1"}
-                            <dd lay-unselect><a class="layui-nav-a" href="javascript:;" data-filter="{$item1.pid}" data-tab="{$item1.id}"><i class="layui-icon {$item1.icon}"></i>{$item1.name}</a></dd>
-                            {/volist}
-                        </dl>
-                        {/if}
-                    </li>
+    <!--无限极左侧菜单-->
+    <div class="layui-side layui-bg-black layuimini-menu-left">
+    </div>
+
+    <!--初始化加载层-->
+    <!-- <div class="layuimini-loader">
+        <div class="layuimini-loader-inner"></div>
+    </div> -->
+
+    <!--手机端遮罩层-->
+    <div class="layuimini-make"></div>
+
+    <!-- 移动导航 -->
+    <div class="layuimini-site-mobile"><i class="layui-icon"></i></div>
+
+    <!-- 内容主体区域 -->
+    <div class="layui-body main">
+        <div class="main-banner"></div>
+        <div class="main-search"></div>
+        <div class="main-site">
+            {volist name="cat" id="item" key="k"}
+            <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">
+                <h4 id="{$item.title}"><i class="{$item.icon}"></i>{$item.title}</h4>
+                {if isset($item.child) && count($item.child) > 0}
+                <ul class="layui-tab-title">
+                    {if isset($link[$item.id])}
+                    <li class="{if isset($link[$item.id])}layui-this{/if}" lay-id="{$item.id}">{$item.title}</li>
+                    {/if}
+                    {volist name="item.child" id="item1" key="k1"}
+                    <li class="{if $k1 == 1 && !isset($link[$item.id])}layui-this{/if}" lay-id="{$item1.id}">{$item1.title}</li>
                     {/volist}
                 </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="main layui-body">
-        <!-- 内容主体区域 -->
-        <div>
-            <div class="main-banner"></div>
-            <div class="main-search"></div>
-            <div class="main-site">
-                {volist name="cat" id="item" key="k"}
-                <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">
-                    <h4 id="categories{$item.id}"><i class="layui-icon {$item.icon}"></i>{$item.name}</h4>
-                    {if isset($item.children) && count($item.children) > 0}
-                    <ul class="layui-tab-title">
-                        {if isset($link[$item.id])}
-                        <li class="{if isset($link[$item.id])}layui-this{/if}" lay-id="{$item.id}">{$item.name}</li>
-                        {/if}
-                        {volist name="item.children" id="item1" key="k1"}
-                        <li class="{if $k1 == 1 && !isset($link[$item.id])}layui-this{/if}" lay-id="{$item1.id}">{$item1.name}</li>
-                        {/volist}
-                    </ul>
-                    <div class="layui-tab-content">
-                        {if isset($link[$item.id])}
-                        <div class="layui-tab-item {if isset($link[$item.id])}layui-show{/if}">
-                            <div class="layui-bg-gray" style="padding: 16px;">
-                                <div class="layui-row layui-col-space15">
-                                    {volist name="link[$item.id]" id="v" key="key"}
-                                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                        <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                            <div class="layui-card">
-                                                <div class="layui-card-left">
-                                                    <img src="{$v.img}" class="layui-card-img" />
-                                                </div>
-                                                <div class="layui-card-right">
-                                                    <div class="layui-card-header">{$v.name}</div>
-                                                    <div class="layui-card-body">
-                                                        {$v.desc}
-                                                    </div>
+                <div class="layui-tab-content">
+                    {if isset($link[$item.id])}
+                    <div class="layui-tab-item {if isset($link[$item.id])}layui-show{/if}">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                {volist name="link[$item.id]" id="v" key="key"}
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
+                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                        <div class="layui-card">
+                                            <div class="layui-card-left">
+                                                <img src="{$v.img}" class="layui-card-img" />
+                                            </div>
+                                            <div class="layui-card-right">
+                                                <div class="layui-card-header">{$v.name}</div>
+                                                <div class="layui-card-body">
+                                                    {$v.desc}
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    {/volist}
+                                        </div>
+                                    </a>
                                 </div>
+                                {/volist}
                             </div>
                         </div>
-                        {/if}
-                        {volist name="item.children" id="item1" key="k1"}
-                        {if isset($link[$item1.id])}
-                        <div class="layui-tab-item {if $k1 == 1}layui-show{/if}">
-                            <div class="layui-bg-gray" style="padding: 16px;">
-                                <div class="layui-row layui-col-space15">
-                                    {volist name="link[$item1.id]" id="v" key="key"}
-                                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                        <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                            <div class="layui-card">
-                                                <div class="layui-card-left">
-                                                    <img src="{$v.img}" class="layui-card-img" />
-                                                </div>
-                                                <div class="layui-card-right">
-                                                    <div class="layui-card-header">{$v.name}</div>
-                                                    <div class="layui-card-body">
-                                                        {$v.desc}
-                                                    </div>
+                    </div>
+                    {/if}
+                    {volist name="item.child" id="item1" key="k1"}
+                    {if isset($link[$item1.id])}
+                    <div class="layui-tab-item {if $k1 == 1}layui-show{/if}">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                {volist name="link[$item1.id]" id="v" key="key"}
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
+                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                        <div class="layui-card">
+                                            <div class="layui-card-left">
+                                                <img src="{$v.img}" class="layui-card-img" />
+                                            </div>
+                                            <div class="layui-card-right">
+                                                <div class="layui-card-header">{$v.name}</div>
+                                                <div class="layui-card-body">
+                                                    {$v.desc}
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    {/volist}
+                                        </div>
+                                    </a>
                                 </div>
+                                {/volist}
                             </div>
                         </div>
-                        {else/}
-                        <div class="layui-tab-item">
-                        </div>
-                        {/if}
-                        {/volist}
                     </div>
                     {else/}
-                    {if isset($link[$item.id])}
-                    <div class="layui-tab-content">
-                        <div class="layui-tab-item layui-show">
-                            <div class="layui-bg-gray" style="padding: 16px;">
-                                <div class="layui-row layui-col-space15">
-                                    {volist name="link[$item.id]" id="v" key="key"}
-                                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                        <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                            <div class="layui-card">
-                                                <div class="layui-card-left">
-                                                    <img src="{$v.img}" class="layui-card-img" />
-                                                </div>
-                                                <div class="layui-card-right">
-                                                    <div class="layui-card-header">{$v.name}</div>
-                                                    <div class="layui-card-body">
-                                                        {$v.desc}
-                                                    </div>
+                    <div class="layui-tab-item">
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+                {else/}
+                {if isset($link[$item.id])}
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-bg-gray" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                {volist name="link[$item.id]" id="v" key="key"}
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
+                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
+                                        <div class="layui-card">
+                                            <div class="layui-card-left">
+                                                <img src="{$v.img}" class="layui-card-img" />
+                                            </div>
+                                            <div class="layui-card-right">
+                                                <div class="layui-card-header">{$v.name}</div>
+                                                <div class="layui-card-body">
+                                                    {$v.desc}
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    {/volist}
+                                        </div>
+                                    </a>
                                 </div>
+                                {/volist}
                             </div>
                         </div>
                     </div>
-                    {/if}
-                    {/if}
                 </div>
-                {/volist}
+                {/if}
+                {/if}
             </div>
-            <br><br>
+            {/volist}
         </div>
+
     </div>
     <div class="layui-footer layui-hide-xs">
-        <!-- 底部固定区域 -->
         版权 or 链接
-    </div>
+    </div
 </div>
-<script src="/resource/layui/layui.js"></script>
+<script src="/resource/nav/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="/resource/nav/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(function(){
-        var element = layui.element;
-        var layer = layui.layer;
-        var $ = layui.$;
-        var util = layui.util;
-        //头部事件
-        util.event('lay-header-event', {
-            menuLeft: function(othis){ // 左侧菜单事件
-                layer.msg('展开左侧菜单的操作', {icon: 0});
-            },
-            menuRight: function(){  // 右侧菜单事件
-                layer.open({
-                    type: 1,
-                    title: '更多',
-                    content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
-                    area: ['260px', '100%'],
-                    offset: 'rt', // 右上角
-                    anim: 'slideLeft', // 从右侧抽屉滑出
-                    shadeClose: true,
-                    scrollbar: false
-                });
-            }
-        });
+    layui.use(['jquery', 'layer', 'miniAdmin'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniAdmin = layui.miniAdmin,
+            element = layui.element;
 
-
-        element.render('nav');
-        // 获取所有的导航项
-        var navItems = document.querySelectorAll('.layui-nav-child dd');
-        // 为每个导航项添加点击事件
-        navItems.forEach(function(navItem, index){ 
-            navItem.addEventListener('click', function(){
-                var targetFilter = this.querySelector('a').getAttribute('data-filter');
-                // 获取当前点击的导航项的data-tab属性值
-                var targetTab = this.querySelector('a').getAttribute('data-tab');
-                // 切换到对应的标签页
-                element.tabChange(targetFilter, targetTab);
-            });
-        });
+        var options = {
+            iniUrl: "/nav/index/api",    // 初始化接口
+            urlHashLocation: false,      // 是否打开hash定位
+            bgColorDefault: false,      // 主题默认配置
+            multiModule: true,          // 是否开启多模块
+            menuChildOpen: false,       // 是否默认展开菜单
+            loadingTime: 0,             // 初始化加载时间
+            pageAnim: false,             // iframe窗口动画
+            maxTabNum: 20,              // 最大的tab打开数量
+        };
+        miniAdmin.render(options);
 
         // 给带有tips类的链接绑定鼠标悬浮提示事件
         $('.tips').on('mouseenter', function(){
             var tipsText = $(this).attr('lay-tips');
-            // layer.tips(tipsText, this);
             layer.tips(tipsText, this, {
                 tips: [3, '#16b777']
             });

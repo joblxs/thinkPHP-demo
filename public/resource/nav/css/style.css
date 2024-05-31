@@ -8,9 +8,22 @@ html, body {
     font-family:'Questrial','Noto Serif SC' ;
     color: #fff !important;
 }
+.layui-layer {
+    background-color: #23292e !important;
+}
 .layui-tab .layui-tab-title {
     border-bottom-width: 0px;
     /* border-bottom-style: solid;*/
+}
+.layui-tab .layui-tab-title li:hover {
+    color: #009688;
+    /* border-bottom-style: solid;*/
+}
+.layui-tab h4 {
+    padding: 20px 0 0 20px !important;
+}
+.layui-tab h4 i {
+    margin-right: 15px !important;
 }
 .layui-bg-gray {
     background-color: transparent !important;
@@ -70,15 +83,13 @@ html, body {
 .layui-nav-a {
     margin-left: 15px;
 }
-.layui-icon {
-    margin-right: 15px;
-}
 .layui-layout-admin .layui-footer {
     background-color: #23292e;
     text-align: center;
+    left: 0;
 }
 .main {
-    overflow-y: scroll;
+    overflow-y: scroll !important;
     padding: 10px;
 }
 .main .main-site h4 {
