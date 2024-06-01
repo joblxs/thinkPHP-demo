@@ -22,7 +22,7 @@ class Index extends BaseController
     public function api() {
         $homeInfo = [
             'title' => '首页',
-            'href'  => 'page/welcome-1.html?t=1',
+            'href'  => '/',
         ];
         $logoInfo = [
             'title' => '个人导航',

@@ -1,22 +1,19 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "joblxs/tools",
+    "description": "基于ThinkPHP8.0和layui的后台管理、api管理",
     "type": "project",
     "keywords": [
         "framework",
         "thinkphp",
-        "ORM"
+        "admin",
+        "api"
     ],
-    "homepage": "https://www.thinkphp.cn/",
-    "license": "Apache-2.0",
+    "homepage": "https://lxshuai.top/",
+    "license": "MIT",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
-        },
-        {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
+            "name": "lxshuai",
+            "email": "1591451405@qq.com"
         }
     ],
     "require": {
