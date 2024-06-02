@@ -21,9 +21,7 @@ layui.use(['table', 'treetable'], function () {
             // {field: 'orderNumber', width: 80, align: 'center', title: '排序号'},
             {
                 field: 'isMenu', width: 80, align: 'center', templet: function (d) {
-                    if (d.type == 2) {
-                        return '<span class="layui-badge layui-bg-gray">按钮</span>';
-                    } else if (d.type == 0) {
+                    if (d.pid == 0) {
                         return '<span class="layui-badge layui-bg-blue">模块</span>';
                     } else {
                         return '<span class="layui-badge-rim">菜单</span>';
