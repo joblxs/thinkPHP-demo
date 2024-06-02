@@ -3,7 +3,7 @@
 namespace app\admin\controller;
 
 use app\BaseController;
-use app\admin\model\Menu;
+use app\admin\model\AdminMenu;
 
 class Index extends BaseController
 {
@@ -25,7 +25,7 @@ class Index extends BaseController
         'image' => 'https://pic.lxshuai.top/i/2024/05/18/6647eeade3ec2.webp',
         'href' => '/'
     ];
-    $menuInfo = Menu::getMenuList();
+    $menuInfo = AdminMenu::getMenuTree();
     $systemInit = [
         'homeInfo' => $homeInfo,
         'logoInfo' => $logoInfo,

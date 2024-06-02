@@ -3,7 +3,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Menu extends Model
+class AdminMenu extends Model
 {
     // 设置当前模型对应的完整数据表名称
     protected $table = 'admin_menu';
@@ -12,8 +12,16 @@ class Menu extends Model
     protected $updateTime = 'update_at';
     protected $deleteTime = 'delete_at';
 
+    public static function getMenuList(){
+        $menuList = self::field('id,pid,title,icon,href,target')
+            ->where('status', 1)
+            ->order('sort', 'desc')
+            ->select();
+        return $menuList;
+    }
+
     // 获取菜单列表
-    public static function getMenuList($pid = 0){
+    public static function getMenuTree($pid = 0){
         $menuList = self::field('id,pid,title,icon,href,target')
             ->where('status', 1)
             ->order('sort', 'desc')
