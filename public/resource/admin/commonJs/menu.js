@@ -68,7 +68,18 @@ layui.use(['table', 'treetable'], function () {
         if (layEvent === 'del') {
             layer.msg('删除' + data.id);
         } else if (layEvent === 'edit') {
-            layer.msg('修改' + data.id);
+            var index = layer.open({
+                title: '修改',
+                type: 2,
+                shade: 0.2,
+                maxmin:true,
+                shadeClose: true,
+                area: ['100%', '100%'],
+                content: '/admin/system.menu/edit?id=' + data.id,
+            });
+            $(window).on("resize", function () {
+                layer.full(index);
+            });
         }
     });
 });
