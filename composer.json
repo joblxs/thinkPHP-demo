@@ -24,7 +24,8 @@
         "hg/apidoc": "^5.2",
         "topthink/think-multi-app": "^1.0",
         "yzh52521/easyhttp": "^1.1",
-        "topthink/think-view": "^2.0"
+        "topthink/think-view": "^2.0",
+        "firebase/php-jwt": "^6.10"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",
@@ -46,5 +47,11 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.cloud.tencent.com/composer/"
+        }
     }
 }

@@ -13,6 +13,15 @@ return [
             'path'=>'app\api\controller',
             // （必须）唯一的key
             'key'=>'api',
+        ],
+        [
+            // （必须）标题
+            'title'=>'后台管理',
+            // （必须）控制器目录地址
+            'path'=>'app\admin\controller',
+            // （必须）唯一的key
+            'key'=>'admin',
+            'password'   => "admin"
         ]
     ],
 
