@@ -10,21 +10,21 @@ layui.use(['table', 'treetable'], function () {
         treeSpid: 0,
         treeIdName: 'id',
         treePidName: 'pid',
-        elem: '#munu-table',
+        elem: '#currentTable',
         url: '/admin/system.menu/apiIndex',
         page: false,
         cols: [[
             {type: 'checkbox'},
-            {field: 'title', minWidth: 200, title: '权限名称'},
-            {field: 'href', title: '菜单url'},
+            {field: 'title', minWidth: 200, title: '菜单名称'},
+            // {field: 'icon', width: 80, title: '图标', templet: ea.table.icon},
+            {field: 'href', title: '菜单链接'},
             // {field: 'orderNumber', width: 80, align: 'center', title: '排序号'},
             {
                 field: 'isMenu', width: 80, align: 'center', templet: function (d) {
-                    if (d.pid == 1) {
+                    if (d.type == 2) {
                         return '<span class="layui-badge layui-bg-gray">按钮</span>';
-                    }
-                    if (d.pid == 0) {
-                        return '<span class="layui-badge layui-bg-blue">目录</span>';
+                    } else if (d.type == 0) {
+                        return '<span class="layui-badge layui-bg-blue">模块</span>';
                     } else {
                         return '<span class="layui-badge-rim">菜单</span>';
                     }
@@ -38,15 +38,30 @@ layui.use(['table', 'treetable'], function () {
     });
 
     $('#btn-expand').click(function () {
-        treetable.expandAll('#munu-table');
+        treetable.expandAll('#currentTable');
     });
 
     $('#btn-fold').click(function () {
-        treetable.foldAll('#munu-table');
+        treetable.foldAll('#currentTable');
+    });
+
+    $('#btn-add').click(function () {
+        var index = layer.open({
+            title: '添加',
+            type: 2,
+            shade: 0.2,
+            maxmin:true,
+            shadeClose: true,
+            area: ['100%', '100%'],
+            content: '/admin/system.menu/add',
+        });
+        $(window).on("resize", function () {
+            layer.full(index);
+        });
     });
 
     //监听工具条
-    table.on('tool(munu-table)', function (obj) {
+    table.on('tool(currentTable)', function (obj) {
         var data = obj.data;
         var layEvent = obj.event;
 

@@ -1,0 +1,124 @@
+{include file="common/header" /}
+<style>
+    body {
+        background-color: #ffffff;
+    }
+</style>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">上级菜单</label>
+        <div class="layui-input-block">
+            <select name="pid">
+                {foreach $pidMenuList as $vo}
+                <option value="{$vo.id}">{$vo.title|raw}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label required">菜单名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" class="layui-input" lay-verify="required" lay-reqtext="请输入菜单名称" placeholder="请输入菜单名称" value="">
+            <tip>填写菜单名称。</tip>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜单链接</label>
+        <div class="layui-input-block">
+            <input type="text" id="href" name="href" class="layui-input" lay-reqtext="请输入菜单链接" placeholder="请输入菜单链接" value="">
+            <tip>填写菜单链接。</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择图标</label>
+        <div class="layui-input-block">
+            <input type="text" id="icon" name="icon" lay-filter="icon" class="hide" value="fa fa-list">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">target属性</label>
+        <div class="layui-input-block">
+            {foreach ['_self','_blank','_parent','_top'] as $vo}
+            <input type="radio" name="target" value="{$vo}" title="{$vo}" {if $vo=='_self'}checked=""{/if}>
+            {/foreach}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">类型</label>
+        <div class="layui-input-block">
+            <input type="radio" name="type" value="0" title="模块">
+            <input type="radio" name="type" value="1" title="菜单" checked>
+            <input type="radio" name="type" value="2" title="按钮">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜单排序</label>
+        <div class="layui-input-block">
+            <input type="number" name="sort" lay-reqtext="菜单排序不能为空" placeholder="请输入菜单排序" value="0" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注信息</label>
+        <div class="layui-input-block">
+            <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+        </div>
+    </div>
+
+    <div class="hr-line"></div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+{include file="common/footer" /}
+<script>
+    layui.use(['form', 'iconPickerFa'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            iconPickerFa = layui.iconPickerFa;
+            $ = layui.$;
+
+            
+        iconPickerFa.render({
+            elem: '#icon',
+            url: '/resource/admin/js/lay-module/font-awesome-4.7.0/less/variables.less',
+            limit: 12,
+            click: function (data) {
+                $('#icon').val('fa ' + data.icon);
+            },
+            success: function (d) {
+                console.log(d);
+            }
+        });
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var index = layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            }, function () {
+
+                // 关闭弹出层
+                layer.close(index);
+
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(iframeIndex);
+
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>
