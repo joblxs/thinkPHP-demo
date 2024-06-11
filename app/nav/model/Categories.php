@@ -18,7 +18,7 @@ class Categories extends Model
         $menuList = self::field('id,pid,title,icon,href,target')
             ->where('status', 1)
             ->where('is_delete', 0)
-            ->order('sort', 'desc')
+            ->order(['sort' => 'desc', 'id' => 'asc'])
             ->select();
         $menuList = self::buildMenuChild($pid, $menuList);
         return $menuList;

@@ -15,7 +15,7 @@ class NavCategorie extends Model
     // 分类管理列表
     public static function getCateList(){
         $cateList = self::where('is_delete', 0)
-            ->order('sort', 'desc')
+            ->order(['sort' => 'desc', 'id' => 'asc'])
             ->select();
         return $cateList;
     }
@@ -24,7 +24,7 @@ class NavCategorie extends Model
     public static function getCateTree($pid = 0){
         $cateList = self::field('id,pid,title,icon,href,target')
             ->where('is_delete', 0)
-            ->order('sort', 'desc')
+            ->order(['sort' => 'desc', 'id' => 'asc'])
             ->select();
         $cateList = self::buildCateChild($pid, $cateList);
         return $cateList;

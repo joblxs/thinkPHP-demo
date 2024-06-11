@@ -15,7 +15,7 @@ class AdminMenu extends Model
     // 菜单管理列表
     public static function getMenuList(){
         $menuList = self::where('is_delete', 0)
-            ->order('sort', 'desc')
+            ->order(['sort' => 'desc', 'id' => 'asc'])
             ->select();
         return $menuList;
     }
@@ -24,7 +24,7 @@ class AdminMenu extends Model
     public static function getMenuTree($pid = 0){
         $menuList = self::field('id,pid,title,icon,href,target')
             ->where('is_delete', 0)
-            ->order('sort', 'desc')
+            ->order(['sort' => 'desc', 'id' => 'asc'])
             ->select();
         $menuList = self::buildMenuChild($pid, $menuList);
         return $menuList;
