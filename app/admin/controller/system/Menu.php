@@ -45,7 +45,7 @@ class Menu extends BaseController
     public function apiIndex() {
         $menuInfo = AdminMenu::getMenuList();
 
-        return json(['code' => 0, 'data' => $menuInfo]);
+        return json(['code' => 200, 'data' => $menuInfo]);
     }
 
     #[
@@ -76,7 +76,6 @@ class Menu extends BaseController
         } else {
             return json(['code' => 201, 'msg' => '添加失败']);
         }
-       
     }
 
 
@@ -101,6 +100,5 @@ class Menu extends BaseController
         } else {
             return json(['code' => 201, 'msg' => '修改失败']);
         }
-       
     }
 }

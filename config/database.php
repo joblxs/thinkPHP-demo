@@ -2,7 +2,7 @@
 
 return [
     // 默认使用的数据库连接配置
-    'default'         => env('DB_DRIVER', 'pgsql'),
+    'default'         => env('DB_DRIVER', 'mysql'),
 
     // 自定义时间查询规则
     'time_query_rule' => [],
@@ -16,23 +16,23 @@ return [
     'datetime_format' => 'Y-m-d H:i:s',
 
     // 时间字段配置 配置格式：create_time,update_time
-    'datetime_field'  => 'created_at,updated_at',
+    'datetime_field'  => '',
 
     // 数据库连接配置信息
     'connections'     => [
-        'pgsql' => [
+        'mysql' => [
             // 数据库类型
-            'type'            => env('DB_TYPE', 'pgsql'),
+            'type'            => env('DB_TYPE', 'mysql'),
             // 服务器地址
-            'hostname'        => env('DB_HOST', '59.110.66.207'),
+            'hostname'        => env('DB_HOST', '127.0.0.1'),
             // 数据库名
-            'database'        => env('DB_NAME', 'tools'),
+            'database'        => env('DB_NAME', ''),
             // 用户名
-            'username'        => env('DB_USER', 'user_Jfn4XN'),
+            'username'        => env('DB_USER', 'root'),
             // 密码
-            'password'        => env('DB_PASS', '10086xiao'),
+            'password'        => env('DB_PASS', ''),
             // 端口
-            'hostport'        => env('DB_PORT', '5432'),
+            'hostport'        => env('DB_PORT', '3306'),
             // 数据库连接参数
             'params'          => [],
             // 数据库编码默认采用utf8

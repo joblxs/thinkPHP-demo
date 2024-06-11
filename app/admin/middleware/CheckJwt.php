@@ -10,6 +10,23 @@ class CheckJwt
 {
     public function handle(Request $request, \Closure $next)
     {
+        $currentController = parse_name($request->controller());
+        $node = parse_name(request()->controller() . '/' . request()->action());
+        $adminConfig = config('admin');
+        $adminId = session('admin.id');
+        $expireTime = session('admin.expire_time');
+
+        // 验证登录
+        if (!in_array($currentController, $adminConfig['no_login_controller'])) {
+            if (empty($adminId)) {
+                return redirect('/admin/auth/login');
+            }
+            // 判断是否登录过期
+            if ($expireTime !== true && time() > $expireTime) {
+                session('admin', null);
+                return redirect('/admin/auth/login');
+            }
+        }
         // $adminConfig = config('admin');
         // var_dump($adminConfig['no_login_node']);
         // var_dump(123);
