@@ -11,7 +11,7 @@ class Menu extends BaseController
 {
 
     public function index() {
-        return view('menu');
+        return view('index');
     }
 
     public function add() {

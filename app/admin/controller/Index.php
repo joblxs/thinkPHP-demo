@@ -14,10 +14,10 @@ class Index extends BaseController
     }
 
     public function menu() {
-        $cacheCate = cache("cate" . session('admin.id'));
-        if (!empty($cacheCate)) {
-            return json($cacheCate);
-        }
+        // $cacheCate = cache("cate" . session('admin.id'));
+        // if (!empty($cacheCate)) {
+        //     return json($cacheCate);
+        // }
 
         $homeInfo = [
             'title' => '首页',
@@ -26,7 +26,7 @@ class Index extends BaseController
         $logoInfo = [
             'title' => '后台管理',
             'image' => 'https://pic.lxshuai.top/i/2024/05/18/6647eeade3ec2.webp',
-            'href' => '/'
+            'href' => 'javascript:;'
         ];
         $menuInfo = AdminMenu::getMenuTree();
         $systemInit = [
@@ -35,7 +35,7 @@ class Index extends BaseController
             'menuInfo' => $menuInfo,
         ];
         // 缓存在604800秒之后过期
-        cache("cate" . session('admin.id'), $systemInit, 604800);
+        // cache("cate" . session('admin.id'), $systemInit, 604800);
         return json($systemInit);
     }
 
