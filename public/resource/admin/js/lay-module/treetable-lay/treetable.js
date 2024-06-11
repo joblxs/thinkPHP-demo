@@ -77,7 +77,7 @@ layui.define(['layer', 'table'], function (exports) {
                 if (isDir) {
                     iconHtml += '<i class="layui-icon layui-icon-triangle-d"></i> <i class="layui-icon layui-icon-layer"></i>';
                 } else {
-                    iconHtml += '<i class="layui-icon layui-icon-file"></i>';
+                    iconHtml += '<i class="' + d.icon + '"></i>';
                 }
                 iconHtml += '&nbsp;&nbsp;';
                 var ttype = isDir ? 'dir' : 'file';

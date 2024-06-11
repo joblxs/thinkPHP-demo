@@ -11,7 +11,7 @@
         <div class="layui-input-block">
             <select name="pid">
                 {foreach $pidMenuList as $vo}
-                <option value="{$vo.id}">{$vo.title|raw}</option>
+                <option value="{$vo.id}" {if $pid==$vo.id}selected=""{/if}>{$vo.title|raw}</option>
                 {/foreach}
             </select>
         </div>

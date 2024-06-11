@@ -50,20 +50,17 @@ class Auth extends BaseController
         $admin = AdminUser::getAdmin($post['username']);
         if (empty($admin)) {
             return json([
-                'msg' => '账号不存在',
-                'code' => 401
+                'msg' => '账号不存在', 'code' => 401
             ]);
         }
         if (password($post['password']) != $admin->password) {
             return json([
-                'msg' => '密码错误',
-                'code' => 401
+                'msg' => '密码错误', 'code' => 401
             ]);
         }
         if ($admin->status == 1) {
             return json([
-                'msg' => '账号已被禁用',
-                'code' => 401
+                'msg' => '账号已被禁用', 'code' => 401
             ]);
         }
         // 登录次数+1
@@ -83,8 +80,7 @@ class Auth extends BaseController
         $admin['token'] = $token;
         session('admin', $admin);
         return json([
-            'data' => $admin,
-            'code' => 200
+            'data' => $admin, 'code' => 200
         ]);
     }
 
@@ -99,8 +95,7 @@ class Auth extends BaseController
     {
         session('admin', null);
         return json([
-            'msg' => '退出登录成功',
-            'code' => 200
+            'msg' => '退出登录成功', 'code' => 200
         ]);
     }
 }

@@ -16,8 +16,10 @@ class Menu extends BaseController
 
     public function add() {
         $pidMenuList = AdminMenu::getPidMenuList();
+        $pid = $this->request->get('pid');
         return view('add', [
-            'pidMenuList' => $pidMenuList
+            'pidMenuList' => $pidMenuList,
+            'pid' => $pid
         ]);
     }
 

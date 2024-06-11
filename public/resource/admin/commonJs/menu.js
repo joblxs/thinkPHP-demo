@@ -28,7 +28,7 @@ layui.use(['table', 'treetable'], function () {
                     }
                 }, title: '类型'
             },
-            {templet: '#auth-state', width: 120, align: 'center', title: '操作'}
+            {templet: '#auth-state', width: 220, align: 'center', title: '操作'}
         ]],
         done: function () {
             layer.closeAll('loading');
@@ -51,7 +51,7 @@ layui.use(['table', 'treetable'], function () {
             maxmin:true,
             shadeClose: true,
             area: ['100%', '100%'],
-            content: '/admin/system.menu/add',
+            content: '/admin/system.menu/add?pid=0',
         });
         $(window).on("resize", function () {
             layer.full(index);
@@ -65,6 +65,19 @@ layui.use(['table', 'treetable'], function () {
 
         if (layEvent === 'del') {
             layer.msg('删除' + data.id);
+        } else if (layEvent === 'addChild') {
+            var index = layer.open({
+                title: '添加',
+                type: 2,
+                shade: 0.2,
+                maxmin:true,
+                shadeClose: true,
+                area: ['100%', '100%'],
+                content: '/admin/system.menu/add?pid=' + data.id,
+            });
+            $(window).on("resize", function () {
+                layer.full(index);
+            });
         } else if (layEvent === 'edit') {
             var index = layer.open({
                 title: '修改',
