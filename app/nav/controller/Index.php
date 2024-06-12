@@ -11,7 +11,7 @@ class Index extends BaseController
 {
     public function index()
     {
-        $cat = Categories::getMenuList(1);
+        $cat = Categories::getMenuList(0);
         $link = Links::getAllLinks();
         return view('index', [
             'cat' => $cat,

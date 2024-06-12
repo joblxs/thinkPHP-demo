@@ -51,44 +51,23 @@ class AdminMenu extends Model
     // 添加/修改页面上级菜单选择
     public static function getPidMenuList() {
         $list = self::field('id,pid,title')
-        ->where([
-            ['is_delete', '=', 0],
-        ])
-        ->select()
-        ->toArray();
-        $pidMenuList = self::buildPidMenu(0, $list);
+            ->where([
+                ['is_delete', '=', 0],
+                ['pid', '=', 0],
+            ])->order(['sort' => 'desc', 'id' => 'asc'])
+            ->select()
+            ->toArray();
+        foreach ($list as $key => $vo) {
+            $repeatString = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            $markString   = str_repeat("{$repeatString}├{$repeatString}", 1);
+            $vo['title']  = $markString . $vo['title'];
+            $list[$key] = $vo;
+        }
         $pidMenuList = array_merge([[
             'id'    => 0,
             'pid'   => 0,
             'title' => '顶级菜单',
-        ]], $pidMenuList);
+        ]], $list);
         return $pidMenuList;
     }
-    protected static function buildPidMenu($pid, $list, $level = 0)
-    {
-        $newList = [];
-        foreach ($list as $vo) {
-            if ($vo['pid'] == $pid) {
-                $level++;
-                foreach ($newList as $v) {
-                    if ($vo['pid'] == $v['pid'] && isset($v['level'])) {
-                        $level = $v['level'];
-                        break;
-                    }
-                }
-                $vo['level'] = $level;
-                if ($level > 1) {
-                    $repeatString = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    $markString   = str_repeat("{$repeatString}├{$repeatString}", $level - 1);
-                    $vo['title']  = $markString . $vo['title'];
-                }
-                $newList[] = $vo;
-                $childList = self::buildPidMenu($vo['id'], $list, $level);
-                !empty($childList) && $newList = array_merge($newList, $childList);
-            }
-
-        }
-        return $newList;
-    }
-
 }

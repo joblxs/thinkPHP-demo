@@ -151,9 +151,9 @@ layui.define(["element","laytpl" ,"jquery"], function (exports) {
                 return topMenuItemHtml ;
             }).join("");
             $('.layui-layout-body').addClass('layuimini-multi-module'); //多模块标识
-            // $('.layuimini-menu-header-pc').html(headerMenuHtml); //电脑
+            $('.layuimini-menu-header-pc').html(headerMenuHtml); //电脑
             $('.layuimini-menu-left').html(leftMenuHtml);
-            // $('.layuimini-menu-header-mobile').html(headerMobileMenuHtml); //手机
+            $('.layuimini-menu-header-mobile').html(headerMobileMenuHtml); //手机
             element.init();
         },
 

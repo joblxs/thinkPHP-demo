@@ -109,6 +109,7 @@
                             layer.closeAll();
 
                             var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.location.reload();//刷新父页面
                             parent.layer.close(iframeIndex);
                         }, 2000);
                     } else {

@@ -7,7 +7,7 @@ layui.use(['table', 'treetable'], function () {
     layer.load(2);
     treetable.render({
         treeColIndex: 1,
-        treeSpid: 1,
+        treeSpid: 0,
         treeIdName: 'id',
         treePidName: 'pid',
         elem: '#currentTable',
@@ -20,11 +20,9 @@ layui.use(['table', 'treetable'], function () {
             {
                 field: 'isMenu', width: 100, align: 'center', templet: function (d) {
                     if (d.pid == 0) {
-                        return '<span class="layui-badge layui-bg-blue">顶级分类</span>';
-                    } else if (d.pid == 1) {
-                        return '<span class="layui-badge-rim layui-bg-red">一级分类</span>';
+                        return '<span class="layui-badge layui-bg-blue">一级分类</span>';
                     } else {
-                        return '<span class="layui-badge-rim">二级分类</span>';
+                        return '<span class="layui-badge-rim layui-bg-red">二级分类</span>';
                     }
                 }, title: '类型'
             },
