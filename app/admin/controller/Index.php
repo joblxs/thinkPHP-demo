@@ -41,8 +41,6 @@ class Index extends BaseController
 
     public function clearCache() {
         Cache::clear();
-        return json([
-            'msg' => '清理缓存成功', 'code' => 200
-        ]);
+        return json(['msg' => '清理缓存成功', 'code' => 200]);
     }
 }

@@ -37,4 +37,21 @@ class Index extends BaseController
         ];
         return json($systemInit);
     }
+
+    public function clickLink() {
+        $id = $this->request->get('id', 0);
+
+        if ($id == 0) {
+            return json(['msg' => '链接错误', 'code' => 400]);
+        }
+        $link = Links::getLink($id);
+        if (empty($link)) {
+            return json(['msg' => '链接不存在', 'code' => 400]);
+        }
+        // 点击次数+1
+//        Links::clickNum($id);
+
+        $link = $link->toArray();
+        return json(['code' => 200, 'data' => $link]);
+    }
 }

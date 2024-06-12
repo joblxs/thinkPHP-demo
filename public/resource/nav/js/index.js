@@ -28,7 +28,29 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
 
     // 添加点击事件
     $('.layui-card.tips').on('click', function(){
-        var linkName = $(this).find('.layui-card-header').text(); // 获取卡片标题
-        layer.msg('你点击了卡片: ' + linkName); // 弹出提示信息
+        var id = $(this).data('id');
+        $.ajax({
+            type: 'GET', // 提交方式
+            url: '/nav/index/clickLink?id='+id, // 你的后端接口地址
+            success: function (res) {
+                // 请求成功，根据后端返回的数据进行处理
+                if (res.code == 200) {
+                    console.log(res.data);
+                    // 使用 window.open 根据 data-target 的值来决定是新窗口打开还是当前窗口跳转
+                    if(res.data.target === '_blank') {
+                        window.open(res.data.link, '_blank');
+                    } else {
+                        window.location.href = res.data.link;
+                    }
+                } else {
+                    layer.msg(res.msg);
+                }
+            },
+            error: function (xhr, status, error) {
+                // 请求失败，根据错误类型进行处理
+                layer.msg('提交失败：' + error);
+            }
+        });
+        return false;
     })
 });

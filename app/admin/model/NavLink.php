@@ -8,7 +8,7 @@ use QL\QueryList;
 class NavLink extends Model
 {
     // 设置当前模型对应的完整数据表名称
-    protected $table = 'nav_links';
+    protected $table = 'nav_link';
     // 设置时间戳字段名
     protected $createTime = 'create_at';
     protected $updateTime = 'update_at';

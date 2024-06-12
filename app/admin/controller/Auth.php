@@ -49,19 +49,13 @@ class Auth extends BaseController
         $this->validate($post, $rule);
         $admin = AdminUser::getAdmin($post['username']);
         if (empty($admin)) {
-            return json([
-                'msg' => '账号不存在', 'code' => 401
-            ]);
+            return json(['msg' => '账号不存在', 'code' => 401]);
         }
         if (password($post['password']) != $admin->password) {
-            return json([
-                'msg' => '密码错误', 'code' => 401
-            ]);
+            return json(['msg' => '密码错误', 'code' => 401]);
         }
         if ($admin->status == 1) {
-            return json([
-                'msg' => '账号已被禁用', 'code' => 401
-            ]);
+            return json(['msg' => '账号已被禁用', 'code' => 401]);
         }
         // 登录次数+1
         AdminUser::loginNum($post['username']);
@@ -79,9 +73,7 @@ class Auth extends BaseController
         $admin['expire_time'] = time() + 86400;
         $admin['token'] = $token;
         session('admin', $admin);
-        return json([
-            'data' => $admin, 'code' => 200
-        ]);
+        return json(['data' => $admin, 'code' => 200]);
     }
 
     #[
@@ -94,8 +86,6 @@ class Auth extends BaseController
     public function logOut()
     {
         session('admin', null);
-        return json([
-            'msg' => '退出登录成功', 'code' => 200
-        ]);
+        return json(['msg' => '退出登录成功', 'code' => 200]);
     }
 }
