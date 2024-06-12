@@ -108,19 +108,17 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                        <div class="layui-card">
-                                            <div class="layui-card-left">
-                                                <img src="{$v.img}" class="layui-card-img" />
-                                            </div>
-                                            <div class="layui-card-right">
-                                                <div class="layui-card-header">{$v.name}</div>
-                                                <div class="layui-card-body">
-                                                    {$v.desc}
-                                                </div>
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}">
+                                        <div class="layui-card-left">
+                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                        </div>
+                                        <div class="layui-card-right">
+                                            <div class="layui-card-header">{$v.link_name}</div>
+                                            <div class="layui-card-body">
+                                                {$v.link_desc}
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                                 {/volist}
                             </div>
@@ -134,19 +132,17 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item1.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                        <div class="layui-card">
-                                            <div class="layui-card-left">
-                                                <img src="{$v.img}" class="layui-card-img" />
-                                            </div>
-                                            <div class="layui-card-right">
-                                                <div class="layui-card-header">{$v.name}</div>
-                                                <div class="layui-card-body">
-                                                    {$v.desc}
-                                                </div>
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}">
+                                        <div class="layui-card-left">
+                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                        </div>
+                                        <div class="layui-card-right">
+                                            <div class="layui-card-header">{$v.link_name}</div>
+                                            <div class="layui-card-body">
+                                                {$v.link_desc}
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                                 {/volist}
                             </div>
@@ -166,19 +162,17 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <a href="{$v.link}" lay-tips="{$v.desc}" class="tips">
-                                        <div class="layui-card">
-                                            <div class="layui-card-left">
-                                                <img src="{$v.img}" class="layui-card-img" />
-                                            </div>
-                                            <div class="layui-card-right">
-                                                <div class="layui-card-header">{$v.name}</div>
-                                                <div class="layui-card-body">
-                                                    {$v.desc}
-                                                </div>
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}">
+                                        <div class="layui-card-left">
+                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                        </div>
+                                        <div class="layui-card-right">
+                                            <div class="layui-card-header">{$v.link_name}</div>
+                                            <div class="layui-card-body">
+                                                {$v.link_desc}
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                                 {/volist}
                             </div>

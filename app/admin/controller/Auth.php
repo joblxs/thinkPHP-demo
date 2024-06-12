@@ -7,7 +7,7 @@ use hg\apidoc\annotation as Apidoc;
 use app\admin\common\JwtUtil;
 use app\admin\model\AdminUser;
 
-#[Apidoc\Title("登录管理")]
+#[Apidoc\Title("登录")]
 class Auth extends BaseController
 {
     /**

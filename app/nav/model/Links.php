@@ -13,7 +13,7 @@ class Links extends Model
 
     public static function getAllLinks()
     {
-        $links = self::select()->toArray();
+        $links = self::order(['sort' => 'desc', 'id' => 'asc'])->select()->toArray();
         $newFormat = [];
         foreach ($links as $item) {
             if (!isset($newFormat[$item['cat_id']])) {

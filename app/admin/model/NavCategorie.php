@@ -42,4 +42,43 @@ class NavCategorie extends Model
         ]], $list);
         return $pidCateList;
     }
+
+    // 添加/修改链接选择
+    public static function getCatesList() {
+        $list = self::field('id,pid,title')
+            ->where([
+                ['is_delete', '=', 0],
+            ])
+            ->order(['sort' => 'desc', 'id' => 'asc'])
+            ->select()
+            ->toArray();
+        $pidCateList = self::buildPidCate(0, $list);
+        return $pidCateList;
+    }
+    protected static function buildPidCate($pid, $list, $level = 0)
+    {
+        $newList = [];
+        foreach ($list as $vo) {
+            if ($vo['pid'] == $pid) {
+                $level++;
+                foreach ($newList as $v) {
+                    if ($vo['pid'] == $v['pid'] && isset($v['level'])) {
+                        $level = $v['level'];
+                        break;
+                    }
+                }
+                $vo['level'] = $level;
+                if ($level > 1) {
+                    $repeatString = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    $markString   = str_repeat("{$repeatString}├{$repeatString}", $level - 1);
+                    $vo['title']  = $markString . $vo['title'];
+                }
+                $newList[] = $vo;
+                $childList = self::buildPidCate($vo['id'], $list, $level);
+                !empty($childList) && $newList = array_merge($newList, $childList);
+            }
+
+        }
+        return $newList;
+    }
 }

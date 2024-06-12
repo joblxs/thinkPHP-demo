@@ -25,4 +25,10 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
     }).on('mouseleave', function(){
         layer.closeAll('tips');
     });
+
+    // 添加点击事件
+    $('.layui-card.tips').on('click', function(){
+        var linkName = $(this).find('.layui-card-header').text(); // 获取卡片标题
+        layer.msg('你点击了卡片: ' + linkName); // 弹出提示信息
+    })
 });

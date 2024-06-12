@@ -39,7 +39,7 @@ class Categorie extends BaseController
         Apidoc\Title("分类列表"),
         Apidoc\Tag("导航管理"),
         Apidoc\Method("GET"),
-        Apidoc\Url("/admin/nav.categorie/index"),
+        Apidoc\Url("/admin/nav.categorie/apiIndex"),
         Apidoc\Header(name:"Content-Type",type: "string",require: true,desc: "Content-Type 编码请求",mock: "application/json"),
         Apidoc\Returned("token",type: "string",desc: "token"),
     ]
@@ -80,6 +80,14 @@ class Categorie extends BaseController
     }
 
 
+    #[
+        Apidoc\Title("更新分类"),
+        Apidoc\Tag("导航管理"),
+        Apidoc\Method("POST"),
+        Apidoc\Url("/admin/nav.categorie/apiEdit"),
+        Apidoc\Header(name:"Content-Type",type: "string",require: true,desc: "Content-Type 编码请求",mock: "application/json"),
+        Apidoc\Returned("json",type: "json",desc: "json"),
+    ]
     public function apiEdit() {
         $post = $this->request->post();
         $rule = [

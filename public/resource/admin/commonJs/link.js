@@ -15,9 +15,16 @@ layui.use(['form', 'table'], function () {
         cols: [[
             {type: "checkbox", width: 50},
             {field: 'id', width: 80, title: 'ID', sort: true},
-            {field: 'title', width: 180, title: '所属分类'},
-            {field: 'name', width: 180, title: '链接名称'},
-            {field: 'desc', width: 280, title: '描述'},
+            {
+                field: 'title', width: 180, templet: function (d) {
+                    return '<i class="'+d.icon+'"></i> ' + d.title;
+                }, title: '所属分类'
+            },
+            {
+                field: 'link_name', width: 180, templet: function (d) {
+                    return '<a href="'+d.link+'" title="'+d.link_desc+'" target="_blank">'+d.link_name+'</a>';
+                }, title: '链接名称'
+            },
             {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
         ]],
         limits: [10, 15, 20, 25, 50, 100],
@@ -58,7 +65,7 @@ layui.use(['form', 'table'], function () {
                 maxmin:true,
                 shadeClose: true,
                 area: ['100%', '100%'],
-                content: '../page/table/add.html',
+                content: '/admin/nav.link/add?cid=1',
             });
             $(window).on("resize", function () {
                 layer.full(index);
@@ -86,7 +93,7 @@ layui.use(['form', 'table'], function () {
                 maxmin:true,
                 shadeClose: true,
                 area: ['100%', '100%'],
-                content: '../page/table/edit.html',
+                content: '/admin/nav.link/edit?id=' + data.id,
             });
             $(window).on("resize", function () {
                 layer.full(index);

@@ -6,7 +6,7 @@ use app\BaseController;
 use app\admin\model\AdminMenu;
 use hg\apidoc\annotation as Apidoc;
 
-#[Apidoc\Title("系统管理")]
+#[Apidoc\Title("系统菜单管理")]
 class Menu extends BaseController
 {
 
@@ -81,6 +81,14 @@ class Menu extends BaseController
     }
 
 
+    #[
+        Apidoc\Title("更新菜单"),
+        Apidoc\Tag("系统管理"),
+        Apidoc\Method("POST"),
+        Apidoc\Url("/admin/system.menu/apiEdit"),
+        Apidoc\Header(name:"Content-Type",type: "string",require: true,desc: "Content-Type 编码请求",mock: "application/json"),
+        Apidoc\Returned("json",type: "json",desc: "json"),
+    ]
     public function apiEdit() {
         $post = $this->request->post();
         $rule = [
