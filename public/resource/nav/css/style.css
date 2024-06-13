@@ -54,8 +54,8 @@ html, body {
     font-size: 24px; /* 根据需要调整图标大小 */
     z-index: 10; /* 确保图标在图片上方 */
     position: absolute;
-    top: 0;
-    left: 28px;
+    top: -25px;
+    left: 0;
     color: red;
     will-change: transform, box-shadow;
 }

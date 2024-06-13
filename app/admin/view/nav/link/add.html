@@ -31,6 +31,17 @@
         </div>
     </div>
 
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline" style="width: 70px;">
+            <input type="checkbox" name="is_pass" lay-skin="switch" lay-filter="passwordSwitch" lay-text="ON|OFF" id="passwordSwitch">
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" name="password" id="password" placeholder="请输入密码" value="" class="layui-input" style="display: none;">
+        </div>
+    </div>
+
+
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">关键词</label>
         <div class="layui-input-block">
@@ -90,8 +101,22 @@
             }
         });
 
+        // 监听开关的切换事件
+        form.on('switch(passwordSwitch)', function(data){
+            var password = $('#password');
+            if(data.elem.checked){ // 开关打开
+                password.show();
+            } else { // 开关关闭
+                password.hide();
+            }
+            // 更新Layui表单状态
+            form.render();
+        });
+
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+            var switchValue = $('#passwordSwitch').is(':checked') ? 1 : 0;
+            data.field.is_pass = switchValue;
             $.ajax({
                 type: 'POST', // 提交方式
                 url: '/admin/nav.link/apiAdd', // 你的后端接口地址
