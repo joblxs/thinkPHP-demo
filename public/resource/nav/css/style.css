@@ -47,6 +47,20 @@ html, body {
     width: 30%;
     line-height: 80px; /* 行高与容器高度相同 */
     text-align: center; /* 水平居中 */
+    position: relative; /* 确保.lock-icon是相对于这个元素定位 */
+}
+.lock-icon {
+    display: none; /* 默认不显示锁图标 */
+    font-size: 24px; /* 根据需要调整图标大小 */
+    z-index: 10; /* 确保图标在图片上方 */
+    position: absolute;
+    top: 0;
+    left: 28px;
+    color: red;
+    will-change: transform, box-shadow;
+}
+.tips[data-is_pass="1"] .lock-icon {
+    display: block; /* 当data-is_pass属性为1时显示锁图标 */
 }
 
 .layui-card-left img {

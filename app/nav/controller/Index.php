@@ -48,10 +48,21 @@ class Index extends BaseController
         if (empty($link)) {
             return json(['msg' => '链接不存在', 'code' => 400]);
         }
+
+        if ($link->is_pass == 1) {
+            $password = $this->request->get('password', '');
+            if (empty($password)) {
+                return json(['msg' => '请输入密令', 'code' => 400]);
+            }
+            if ($password != $link->password) {
+                return json(['msg' => '密令错误', 'code' => 400]);
+            }
+        }
         // 点击次数+1
-//        Links::clickNum($id);
+        Links::clickNum($id);
 
         $link = $link->toArray();
+        unset($link['password']);
         return json(['code' => 200, 'data' => $link]);
     }
 }

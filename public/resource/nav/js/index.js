@@ -1,6 +1,7 @@
 layui.use(['jquery', 'layer', 'miniAdmin'], function () {
     var $ = layui.jquery,
         layer = layui.layer,
+        util = layui.util,
         miniAdmin = layui.miniAdmin,
         element = layui.element;
 
@@ -27,15 +28,35 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
     });
 
     // 添加点击事件
-    $('.layui-card.tips').on('click', function(){
+    $('.layui-card.tips').on('click', function() {
         var id = $(this).data('id');
+        var is_pass = $(this).data('is_pass');
+        var password = ''
+        if (is_pass == 1) {
+            layer.prompt({
+                title: ['请输入密令', 'color: #fff'], anim: 1, formType: 1, shade: [0.3, '#FFF']
+            }, function(value, index, elem){
+                if(value === '') return elem.focus();
+                password = util.escape(value)
+                // 关闭 prompt
+                // layer.close(index);
+                // 继续执行 AJAX 请求
+                performAjax(id, password, index);
+            });
+        } else {
+            performAjax(id, password);
+        }
+        return false;
+    })
+
+    function performAjax(id, password, index) {
         $.ajax({
-            type: 'GET', // 提交方式
-            url: '/nav/index/clickLink?id='+id, // 你的后端接口地址
+            type: 'GET',
+            url: '/nav/index/clickLink?id=' + id + '&password=' + (password || ''),
             success: function (res) {
                 // 请求成功，根据后端返回的数据进行处理
                 if (res.code == 200) {
-                    console.log(res.data);
+                    layer.close(index);
                     // 使用 window.open 根据 data-target 的值来决定是新窗口打开还是当前窗口跳转
                     if(res.data.target === '_blank') {
                         window.open(res.data.link, '_blank');
@@ -43,7 +64,7 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
                         window.location.href = res.data.link;
                     }
                 } else {
-                    layer.msg(res.msg);
+                    layer.msg(res.msg, {icon: 4, shade: [0.5, '#FFF']});
                 }
             },
             error: function (xhr, status, error) {
@@ -51,6 +72,5 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
                 layer.msg('提交失败：' + error);
             }
         });
-        return false;
-    })
+    }
 });

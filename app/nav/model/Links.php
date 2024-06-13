@@ -13,7 +13,12 @@ class Links extends Model
 
     public static function getAllLinks()
     {
-        $links = self::order(['sort' => 'desc', 'id' => 'asc'])->select()->toArray();
+        $links = self::field('id,cat_id,link_name,link_desc,link_img,link_keyword,is_pass')
+            ->where([
+                ['is_delete', '=', 0],
+                ['status', '=', 0],
+            ])
+            ->order(['sort' => 'desc', 'id' => 'asc'])->select()->toArray();
         $newFormat = [];
         foreach ($links as $item) {
             if (empty($item['link_img'])) {
@@ -32,7 +37,7 @@ class Links extends Model
     }
 
     public static function getLink($id){
-        $link = self::field('id,cat_id,link,link_name,link_desc,link_img,link_keyword,target,is_pass')
+        $link = self::field('id,cat_id,link,link_name,link_desc,link_img,link_keyword,target,is_pass,password')
             ->where([
                 ['id', '=', $id],
                 ['is_delete', '=', 0],

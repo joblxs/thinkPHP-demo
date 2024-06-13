@@ -108,9 +108,11 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-href="{$v.link}" data-id="{$v.id}" data-target="{$v.target}">
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
                                             <img src="{$v.link_img}" class="layui-card-img" />
+                                            <!-- 添加锁图标的span -->
+                                            <i class="layui-icon layui-icon-password lock-icon" style="position: absolute; top: 10px; left: 10px; color: #fff;"></i>
                                         </div>
                                         <div class="layui-card-right">
                                             <div class="layui-card-header">{$v.link_name}</div>
@@ -132,9 +134,11 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item1.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-href="{$v.link}" data-id="{$v.id}" data-target="{$v.target}">
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
                                             <img src="{$v.link_img}" class="layui-card-img" />
+                                            <!-- 添加锁图标的span -->
+                                            <i class="layui-icon layui-icon-password lock-icon" style="position: absolute; top: 10px; right: 10px; color: #fff;"></i>
                                         </div>
                                         <div class="layui-card-right">
                                             <div class="layui-card-header">{$v.link_name}</div>
@@ -162,9 +166,11 @@
                             <div class="layui-row layui-col-space15">
                                 {volist name="link[$item.id]" id="v" key="key"}
                                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-href="{$v.link}" data-id="{$v.id}" data-target="{$v.target}">
+                                    <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
                                             <img src="{$v.link_img}" class="layui-card-img" />
+                                            <!-- 添加锁图标的span -->
+                                            <i class="layui-icon layui-icon-password lock-icon"></i>
                                         </div>
                                         <div class="layui-card-right">
                                             <div class="layui-card-header">{$v.link_name}</div>
