@@ -25,7 +25,7 @@ class Links extends Model
                 $item['link_img'] = 'https://lxshuai.top/api/lsky/randomImages?'.mt_rand(1, 100);
             }
             if (empty($item['link_desc'])) {
-                $item['link_img'] = '暂无描述';
+                $item['link_desc'] = '暂无描述';
             }
             if (!isset($newFormat[$item['cat_id']])) {
                 $newFormat[$item['cat_id']] = [];
