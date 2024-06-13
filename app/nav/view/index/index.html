@@ -88,7 +88,7 @@
     <div class="layui-body main">
         <div class="main-banner"></div>
         <div class="main-search"></div>
-        <div class="main-site">
+        <div class="main-site" id="flow-lazyimg">
             {volist name="cat" id="item" key="k"}
             <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">
                 <h4 id="{$item.title}"><i class="{$item.icon}"></i>{$item.title}</h4>
@@ -110,7 +110,7 @@
                                 <div class="layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg2">
                                     <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
-                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                            <img lay-src="{$v.link_img}" class="layui-card-img" />
                                             <!-- 添加锁图标的span -->
                                             <i class="layui-icon layui-icon-password lock-icon"></i>
                                         </div>
@@ -136,7 +136,7 @@
                                 <div class="layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg2">
                                     <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
-                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                            <img lay-src="{$v.link_img}" class="layui-card-img" />
                                             <!-- 添加锁图标的span -->
                                             <i class="layui-icon layui-icon-password lock-icon"></i>
                                         </div>
@@ -168,7 +168,7 @@
                                 <div class="layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg2">
                                     <div class="layui-card tips" lay-tips="{$v.link_desc}" data-id="{$v.id}" data-is_pass="{$v.is_pass}">
                                         <div class="layui-card-left">
-                                            <img src="{$v.link_img}" class="layui-card-img" />
+                                            <img lay-src="{$v.link_img}" class="layui-card-img" />
                                             <!-- 添加锁图标的span -->
                                             <i class="layui-icon layui-icon-password lock-icon"></i>
                                         </div>

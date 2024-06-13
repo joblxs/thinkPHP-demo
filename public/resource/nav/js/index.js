@@ -1,6 +1,7 @@
-layui.use(['jquery', 'layer', 'miniAdmin'], function () {
+layui.use(['jquery', 'layer', 'miniAdmin', 'flow'], function () {
     var $ = layui.jquery,
         layer = layui.layer,
+        flow = layui.flow;
         util = layui.util,
         miniAdmin = layui.miniAdmin,
         element = layui.element;
@@ -16,6 +17,12 @@ layui.use(['jquery', 'layer', 'miniAdmin'], function () {
         maxTabNum: 10,              // 最大的tab打开数量
     };
     miniAdmin.render(options);
+
+    // 图片懒加载
+    flow.lazyimg({
+        elem: '#flow-lazyimg img',
+        scrollElem: '#flow-lazyimg' // 触发事件
+    });
 
     // 给带有tips类的链接绑定鼠标悬浮提示事件
     $('.tips').on('mouseenter', function(){

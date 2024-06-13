@@ -22,7 +22,8 @@ class Links extends Model
         $newFormat = [];
         foreach ($links as $item) {
             if (empty($item['link_img'])) {
-                $item['link_img'] = 'https://lxshuai.top/api/lsky/randomImages?'.mt_rand(1, 100);
+                $randomImage = \app\api\model\Lsky::randomImages('');
+                $item['link_img'] = $randomImage;
             }
             if (empty($item['link_desc'])) {
                 $item['link_desc'] = '暂无描述';
