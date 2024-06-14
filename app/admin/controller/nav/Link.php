@@ -83,7 +83,7 @@ class Link extends BaseController
         try {
             $parsedUrl = parse_url($post['link_img']);
             $domain = isset($parsedUrl['host']) ? $parsedUrl['host'] : 'unknown';
-            if ($domain != 'unknown' || $domain != 'pic.lxshuai.top') {
+            if ($domain != 'unknown' && $domain != 'pic.lxshuai.top') {
                 $post['link_img'] = NavLink::saveIcon($post['link_img']);
             }
             $NavLink = new NavLink();
@@ -120,7 +120,7 @@ class Link extends BaseController
             $parsedUrl = parse_url($post['link_img']);
             $domain = isset($parsedUrl['host']) ? $parsedUrl['host'] : 'unknown';
             
-            if ($domain != 'unknown' || $domain != 'pic.lxshuai.top') {
+            if ($domain != 'unknown' && $domain != 'pic.lxshuai.top') {
                 $post['link_img'] = NavLink::saveIcon($post['link_img']);
             }
             $NavLink = new NavLink();
