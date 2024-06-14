@@ -52,10 +52,16 @@ class Link extends BaseController
     ]
     public function apiIndex() {
         $limit = $this->request->get('limit', 15);
+        $domain = app('request')->domain();
 
         $linkList = NavLink::getLinkList($limit);
         $total = $linkList->total();
         $data = $linkList->items();
+        foreach ($data as $item) {
+            if (!empty($item['link_img'])) {
+                $item['link_img'] = $domain . $item['link_img'];
+            }
+        }
 
         return json(['code' => 0, 'data' => $data, 'count' => $total]);
     }

@@ -25,6 +25,15 @@ layui.use(['form', 'table'], function () {
                     return '<a href="'+d.link+'" title="'+d.link_desc+'" target="_blank">'+d.link_name+'</a>';
                 }, title: '链接名称'
             },
+            {
+                field: 'link_img', width: 180, templet: function (d) {
+                    if (d.link_img) {
+                        return '<img src="'+d.link_img+'" alt="'+d.link_img+'" height="30">';
+                    } else {
+                        return ''
+                    }
+                }, title: '图标'
+            },
             {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
         ]],
         limits: [10, 15, 20, 25, 50, 100],
