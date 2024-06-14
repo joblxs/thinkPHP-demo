@@ -4,10 +4,11 @@
  * version:2.0
  * description:layuimini 菜单框架扩展
  */
-layui.define(["element","laytpl" ,"jquery"], function (exports) {
+layui.define(["element","laytpl" ,"jquery", 'flow'], function (exports) {
     var element = layui.element,
         $ = layui.$,
         laytpl = layui.laytpl,
+        flow = layui.flow;
         layer = layui.layer;
 
     var miniMenu = {
@@ -168,6 +169,10 @@ layui.define(["element","laytpl" ,"jquery"], function (exports) {
                 var targetTab = this.querySelector('a').getAttribute('data-tab');
                 // 切换到对应的标签页
                 element.tabChange(targetFilter, targetTab);
+                flow.lazyimg({
+                    elem: '#flow-lazyimg img',
+                    scrollElem: '#flow-lazyimg' // 触发事件
+                });
             });
 
             // 监听锚点点击事件
