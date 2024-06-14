@@ -16,7 +16,7 @@ class Link extends BaseController
 
     public function add() {
         $pidCateList = NavCategorie::getCatesList();
-        $cid = $this->request->get('pid');
+        $cid = $this->request->get('cid');
         return view('add', [
             'pidCateList' => $pidCateList,
             'cid' => $cid
@@ -25,9 +25,14 @@ class Link extends BaseController
 
     public function edit() {
         $get = $this->request->get();
+        $domain = app('request')->domain();
 
         $NavLink = new NavLink();
         $row = $NavLink->find($get['id']);
+        if (!empty($row['link_img'])) {
+            $row['link_img'] = $domain . $row['link_img'];
+        }
+
         $pidCateList = NavCategorie::getCatesList();
         return view('edit', [
             'id'          => $get['id'],
@@ -72,6 +77,11 @@ class Link extends BaseController
         ];
         $this->validate($post, $rule);
         try {
+            $parsedUrl = parse_url($post['link_img']);
+            $domain = isset($parsedUrl['host']) ? $parsedUrl['host'] : 'unknown';
+            if ($domain != 'unknown') {
+                $post['link_img'] = NavLink::saveIcon($post['link_img']);
+            }
             $NavLink = new NavLink();
             $save = $NavLink->save($post);
         } catch (\Exception $e) {
@@ -101,7 +111,13 @@ class Link extends BaseController
             'link_name|链接名称'  => 'require',
         ];
         $this->validate($post, $rule);
+
         try {
+            $parsedUrl = parse_url($post['link_img']);
+            $domain = isset($parsedUrl['host']) ? $parsedUrl['host'] : 'unknown';
+            if ($domain != 'unknown') {
+                $post['link_img'] = NavLink::saveIcon($post['link_img']);
+            }
             $NavLink = new NavLink();
             $save = $NavLink->update($post);
         } catch (\Exception $e) {

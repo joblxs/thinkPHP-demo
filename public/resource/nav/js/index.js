@@ -24,6 +24,17 @@ layui.use(['jquery', 'layer', 'miniAdmin', 'flow'], function () {
         scrollElem: '#flow-lazyimg' // 触发事件
     });
 
+    // 监听 Tab 切换事件
+    $('.layui-tab.layui-tab-brief').on('click', function() {
+        var layFilter = this.getAttribute('lay-filter')
+        element.on('tab('+layFilter+')', function(data){
+            flow.lazyimg({
+                elem: '#flow-lazyimg img',
+                scrollElem: '#flow-lazyimg' // 触发事件
+            });
+        });
+    })
+
     // 给带有tips类的链接绑定鼠标悬浮提示事件
     $('.tips').on('mouseenter', function(){
         var tipsText = $(this).attr('lay-tips');

@@ -13,6 +13,7 @@ class Links extends Model
 
     public static function getAllLinks()
     {
+        $domain = app('request')->domain();
         $links = self::field('id,cat_id,link_name,link_desc,link_img,link_keyword,is_pass')
             ->where([
                 ['is_delete', '=', 0],
@@ -22,8 +23,10 @@ class Links extends Model
         $newFormat = [];
         foreach ($links as $item) {
             if (empty($item['link_img'])) {
-                $randomImage = \app\api\model\Lsky::randomImages('');
+                $randomImage = \app\api\model\Lsky::randomImages('', 'thumbnail_url');
                 $item['link_img'] = $randomImage;
+            } else {
+                $item['link_img'] = $domain . $item['link_img'];
             }
             if (empty($item['link_desc'])) {
                 $item['link_desc'] = '暂无描述';

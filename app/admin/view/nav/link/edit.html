@@ -36,6 +36,18 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label required">图标</label>
+        <div class="layui-input-inline" style="width: 132px;">
+            <div class="layui-upload-list" style="margin: 0 0 10px 0">
+                <img class="layui-upload-img" id="ID-upload-demo-img" src="{$row.link_img|default=''}" style="width: 100%; height: 92px;">
+            </div>
+        </div>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="link_img" value="{$row.link_img|default=''}" placeholder="图标链接">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-inline" style="width: 70px;">
             <input type="checkbox" {if $row.is_pass==1}checked{/if} name="is_pass" lay-skin="switch" lay-filter="passwordSwitch" lay-text="ON|OFF" id="passwordSwitch">
@@ -101,6 +113,8 @@
                             $('[name="link_name"]').val(res.info.title)
                             $('[name="link_keyword"]').val(res.info.keywords)
                             $('[name="link_desc"]').text(res.info.description)
+                            $('[name="link_img"]').val(res.info.icon)
+                            $('#ID-upload-demo-img').attr('src', res.info.icon);
                         }
                     }
                 });

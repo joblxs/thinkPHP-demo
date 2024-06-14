@@ -120,7 +120,8 @@ class Lsky extends BaseController
     ]
     public function randomImages(Request $request) {
         $category = $request->get('category', '');
-        $randomImage = \app\api\model\Lsky::randomImages($category);
+        $size = $request->get('size', 'url');
+        $randomImage = \app\api\model\Lsky::randomImages($category, $size);
         return redirect($randomImage);
     }
 
@@ -137,6 +138,7 @@ class Lsky extends BaseController
     ]
     public function randomSizeImages(Request $request) {
         $category = $request->get('category', '');
+        $size = $request->get('size', 'url');
         $width = $request->get('width', 300);
         $height = $request->get('height', 0);
         $album = [
@@ -162,8 +164,9 @@ class Lsky extends BaseController
             // 使用随机键获取对应的id
             $album_id = $album[$random_key]['id'];
         }
+        $cache_key = "img_" . $size . $album_id;
         try {
-            $images = cache("img".$album_id);
+            $images = cache($cache_key);
             if (empty($images)) {
                 $response = Http::asJson()->withHeaders([
                     'Authorization' => self::$token
@@ -176,7 +179,7 @@ class Lsky extends BaseController
                     foreach ($data as $key => $value) {
                         array_push($imageArr, $value->links->url);
                     }
-                    $images = \app\api\model\Lsky::setCatch($album_id, json_encode($imageArr));
+                    $images = \app\api\model\Lsky::setCatch($cache_key, json_encode($imageArr));
                 }
             }
             $imageArr = json_decode($images);

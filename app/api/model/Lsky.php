@@ -11,13 +11,13 @@ class Lsky extends Model
     private static $apiUrl = "https://pic.lxshuai.top/api/v1";
     private static $token = "Bearer 5|mkeqp2oAHGIQIX92X8FAgvuxjfK8Ih3Jhu6cRTJc";
 
-    public static function setCatch ($album_id, $imageArr) {
+    public static function setCatch ($cache_key, $imageArr) {
         // 缓存在604800秒之后过期
-        cache("img".$album_id, $imageArr, 604800);
+        cache($cache_key, $imageArr, 604800);
         return $imageArr;
     }
 
-    public static function randomImages ($category) {
+    public static function randomImages ($category, $size = 'url') {
         $album = [
             ["id" => 8, "name" => "风景"],
             ["id" => 7, "name" => "汽车"],
@@ -42,8 +42,9 @@ class Lsky extends Model
             $album_id = $album[$random_key]['id'];
         }
 
+        $cache_key = "img_" . $size . $album_id;
         try {
-            $images = cache("img".$album_id);
+            $images = cache($cache_key);
             if (empty($images)) {
                 $response = Http::asJson()->withHeaders([
                     'Authorization' => self::$token
@@ -54,9 +55,9 @@ class Lsky extends Model
                 if ($response->status() == 200) {
                     $data = $response->json()->data->data;
                     foreach ($data as $key => $value) {
-                        array_push($imageArr, $value->links->url);
+                        array_push($imageArr, $value->links->$size);
                     }
-                    $images = self::setCatch($album_id, json_encode($imageArr));
+                    $images = self::setCatch($cache_key, json_encode($imageArr));
                 }
             }
             $imageArr = json_decode($images);

@@ -57,11 +57,39 @@ class NavLink extends Model
         }
         if ($icon) {
             // 判断是否是绝对路径，如果不是则添加网站域名
-            if (strpos($icon, 'http') !== 0) {
+            if (strpos($icon, 'http') !== 0 && strpos($icon, '//') !== 0) {
                 $icon = $url . '/' . ltrim($icon, '/');
             }
         }
 
         return ['title' => $title, 'description' => $description, 'keywords' => $keywords, 'icon' => $icon];
+    }
+
+    /**
+     * @param $url
+     * @return string
+     * 保存图标至本地
+     */
+    public static function saveIcon($url) {
+        // 解析 URL 获取域名
+        $parsedUrl = parse_url($url);
+        $domain = isset($parsedUrl['host']) ? $parsedUrl['host'] : 'unknown';
+        // 清理域名，移除非字母数字字符
+        $cleanDomain = preg_replace('/[^a-zA-Z0-9\-]/', '_', $domain);
+        // 从 URL 中解析文件扩展名
+        $extension = pathinfo($url, PATHINFO_EXTENSION);
+        // 如果没有找到扩展名，默认为 'ico'
+        if (!$extension) {
+            $extension = 'ico';
+        }
+        // 生成随机文件名
+        $fileName = $cleanDomain . '.' . $extension;
+        // 下载文件
+        $iconData = file_get_contents($url);
+        // 保存文件
+        $savePath = 'resource/img/icon/' . $fileName; // 替换为你想保存的路径
+        file_put_contents($savePath, $iconData);
+
+        return '/' . $savePath;
     }
 }

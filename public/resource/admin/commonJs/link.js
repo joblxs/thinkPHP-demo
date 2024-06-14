@@ -59,7 +59,7 @@ layui.use(['form', 'table'], function () {
     table.on('toolbar(currentTableFilter)', function (obj) {
         if (obj.event === 'add') {  // 监听添加操作
             var index = layer.open({
-                title: '添加用户',
+                title: '添加',
                 type: 2,
                 shade: 0.2,
                 maxmin:true,
@@ -87,7 +87,7 @@ layui.use(['form', 'table'], function () {
         if (obj.event === 'edit') {
 
             var index = layer.open({
-                title: '编辑用户',
+                title: '修改',
                 type: 2,
                 shade: 0.2,
                 maxmin:true,

@@ -71,7 +71,7 @@ layui.use(['table', 'treetable'], function () {
                 maxmin:true,
                 shadeClose: true,
                 area: ['100%', '100%'],
-                content: '/admin/nav.categorie/add?pid=' + data.id,
+                content: '/admin/nav.link/add?cid=' + data.id,
             });
             $(window).on("resize", function () {
                 layer.full(index);
