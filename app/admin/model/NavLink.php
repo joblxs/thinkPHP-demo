@@ -32,7 +32,7 @@ class NavLink extends Model
     public static function getSiteInfo($url) {
         // 使用QueryList获取网站标题、描述、关键词、图标
         try {
-            $html = QueryList::get($url, null, [
+            $html = @QueryList::get($url, null, [
                 'timeout' => 30, // 设置超时时间，单位为秒
                 'headers' => [
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
