@@ -26,7 +26,7 @@ class Links extends Model
         $newFormat = [];
         foreach ($links as $item) {
             if (empty($item['link_img'])) {
-                $randomImage = \app\api\model\Lsky::randomImages('', 'thumbnail_url');
+                $randomImage = @\app\api\model\Lsky::randomImages('', 'thumbnail_url');
                 $item['link_img'] = $randomImage;
             } else {
                 $item['link_img'] = $item['link_img'];

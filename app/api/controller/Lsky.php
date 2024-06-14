@@ -121,7 +121,7 @@ class Lsky extends BaseController
     public function randomImages(Request $request) {
         $category = $request->get('category', '');
         $size = $request->get('size', 'url');
-        $randomImage = \app\api\model\Lsky::randomImages($category, $size);
+        $randomImage = @\app\api\model\Lsky::randomImages($category, $size);
         return redirect($randomImage);
     }
 
