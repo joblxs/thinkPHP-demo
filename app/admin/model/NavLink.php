@@ -1,7 +1,10 @@
 <?php
 namespace app\admin\model;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use think\Model;
 use QL\QueryList;
 
@@ -89,6 +92,27 @@ class NavLink extends Model
         // 保存文件
         $savePath = 'resource/img/icon/' . $fileName; // 替换为你想保存的路径
         file_put_contents($savePath, $iconData);
+
+        $client = new Client([
+            'verify' => false,
+        ]);
+        $headers = [
+            'Authorization' => 'Bearer 5|mkeqp2oAHGIQIX92X8FAgvuxjfK8Ih3Jhu6cRTJc'
+        ];
+        $options = [
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => Utils::tryFopen($savePath, 'r'),
+                    'filename' => $savePath,
+                    'headers'  => [
+                        'Content-Type' => '<Content-type header>'
+                    ]
+                ]
+            ]];
+        $request = new Request('POST', 'https://pic.lxshuai.top/api/v1/upload', $headers);
+        $res = $client->sendAsync($request, $options)->wait();
+        echo $res->getBody();
 
         return '/' . $savePath;
     }
