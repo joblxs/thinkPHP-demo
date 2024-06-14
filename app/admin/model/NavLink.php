@@ -90,7 +90,7 @@ class NavLink extends Model
         // 下载文件
         $iconData = file_get_contents($url);
         // 保存文件
-        $savePath = 'resource/img/icon/' . $fileName; // 替换为你想保存的路径
+        $savePath = 'resource/img/' . $fileName; // 替换为你想保存的路径
         file_put_contents($savePath, $iconData);
 
         $client = new Client([
@@ -119,6 +119,7 @@ class NavLink extends Model
             return $data->data->links->url;
         } catch (RequestException $e) {
             var_dump($e);
+            return '';
         }
     }
 }
