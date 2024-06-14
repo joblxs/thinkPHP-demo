@@ -110,4 +110,26 @@ class Categorie extends BaseController
             return json(['code' => 201, 'msg' => '修改失败']);
         }
     }
+
+    public function status() {
+        $post = $this->request->post();
+        $rule = [
+            'id|ID'   => 'require',
+            'status|状态' => 'require'
+        ];
+        $this->validate($post, $rule);
+        try {
+            $NavCategorie = new NavCategorie();
+            $save = $NavCategorie->update($post);
+        } catch (\Exception $e) {
+            var_dump($e);
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+        if ($save) {
+            // TriggerService::updateMenu();
+            return json(['code' => 200, 'msg' => '修改成功']);
+        } else {
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+    }
 }

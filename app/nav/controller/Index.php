@@ -25,9 +25,9 @@ class Index extends BaseController
             'href'  => '/',
         ];
         $logoInfo = [
-            'title' => '个人导航',
+            'title' => '拾贝导航',
             'image' => 'https://pic.lxshuai.top/i/2024/05/18/6647eeade3ec2.webp',
-            'href' => '/'
+            'href' => 'javascript:;'
         ];
         $menuInfo = Categories::getMenuList();
         $systemInit = [

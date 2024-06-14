@@ -137,6 +137,48 @@ class Link extends BaseController
         }
     }
 
+    public function status() {
+        $post = $this->request->post();
+        $rule = [
+            'id|ID'   => 'require',
+            'status|状态' => 'require'
+        ];
+        $this->validate($post, $rule);
+        try {
+            $NavLink = new NavLink();
+            $save = $NavLink->update($post);
+        } catch (\Exception $e) {
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+        if ($save) {
+            // TriggerService::updateMenu();
+            return json(['code' => 200, 'msg' => '修改成功']);
+        } else {
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+    }
+
+    public function password() {
+        $post = $this->request->post();
+        $rule = [
+            'id|ID'   => 'require',
+            'is_pass|密码状态' => 'require'
+        ];
+        $this->validate($post, $rule);
+        try {
+            $NavLink = new NavLink();
+            $save = $NavLink->update($post);
+        } catch (\Exception $e) {
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+        if ($save) {
+            // TriggerService::updateMenu();
+            return json(['code' => 200, 'msg' => '修改成功']);
+        } else {
+            return json(['code' => 201, 'msg' => '修改失败']);
+        }
+    }
+
     public function getSiteInfo() {
         $url = $this->request->get('url');
         $info = NavLink::getSiteInfo($url);

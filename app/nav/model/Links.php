@@ -13,12 +13,16 @@ class Links extends Model
 
     public static function getAllLinks()
     {
-        $links = self::field('id,cat_id,link_name,link_desc,link_img,link_keyword,is_pass')
+        $links = self::alias('nl')
+            ->field('nl.id,nl.cat_id,nl.link_name,nl.link_desc,nl.link_img,nl.link_keyword,nl.is_pass')
+            ->join('nav_categorie nc', 'nl.cat_id = nc.id')
             ->where([
-                ['is_delete', '=', 0],
-                ['status', '=', 0],
+                ['nl.is_delete', '=', 0],
+                ['nl.status', '=', 0],
+                ['nc.is_delete', '=', 0],
+                ['nc.status', '=', 0],
             ])
-            ->order(['sort' => 'desc', 'id' => 'asc'])->select()->toArray();
+            ->order(['nl.sort' => 'desc', 'nl.id' => 'asc'])->select()->toArray();
         $newFormat = [];
         foreach ($links as $item) {
             if (empty($item['link_img'])) {
