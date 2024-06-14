@@ -52,6 +52,15 @@ class NavLink extends Model
         $description = QueryList::html($html)->find('meta[name="description"]')->attr('content');
         $keywords = QueryList::html($html)->find('meta[name="keywords"]')->attr('content');
         $icon = QueryList::html($html)->find('link[rel="shortcut icon"]')->attr('href');
+        if (empty($icon)) {
+            $icon = QueryList::html($html)->find('link[rel="icon"]')->attr('href');
+        }
+        if ($icon) {
+            // 判断是否是绝对路径，如果不是则添加网站域名
+            if (strpos($icon, 'http') !== 0) {
+                $icon = $url . '/' . ltrim($icon, '/');
+            }
+        }
 
         return ['title' => $title, 'description' => $description, 'keywords' => $keywords, 'icon' => $icon];
     }
