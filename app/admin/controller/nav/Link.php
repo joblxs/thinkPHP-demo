@@ -25,12 +25,11 @@ class Link extends BaseController
 
     public function edit() {
         $get = $this->request->get();
-        $domain = app('request')->domain();
 
         $NavLink = new NavLink();
         $row = $NavLink->find($get['id']);
         if (!empty($row['link_img'])) {
-            $row['links_img'] = $domain . $row['link_img'];
+            $row['links_img'] = $row['link_img'];
         }
 
         $pidCateList = NavCategorie::getCatesList();
@@ -52,14 +51,13 @@ class Link extends BaseController
     ]
     public function apiIndex() {
         $limit = $this->request->get('limit', 15);
-        $domain = app('request')->domain();
 
         $linkList = NavLink::getLinkList($limit);
         $total = $linkList->total();
         $data = $linkList->items();
         foreach ($data as $item) {
             if (!empty($item['link_img'])) {
-                $item['link_img'] = $domain . $item['link_img'];
+                $item['link_img'] = $item['link_img'];
             }
         }
 
