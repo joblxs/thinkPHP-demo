@@ -30,7 +30,7 @@ class Link extends BaseController
         $NavLink = new NavLink();
         $row = $NavLink->find($get['id']);
         if (!empty($row['link_img'])) {
-            $row['link_img'] = $domain . $row['link_img'];
+            $row['links_img'] = $domain . $row['link_img'];
         }
 
         $pidCateList = NavCategorie::getCatesList();
