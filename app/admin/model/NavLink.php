@@ -110,10 +110,15 @@ class NavLink extends Model
                     ]
                 ]
             ]];
-        $request = new Request('POST', 'https://pic.lxshuai.top/api/v1/upload', $headers);
-        $res = $client->sendAsync($request, $options)->wait();
-        echo $res->getBody();
+        try {
+            $request = new Request('POST', 'https://pic.lxshuai.top/api/v1/upload', $headers);
+            $res = $client->sendAsync($request, $options)->wait();
+            $data = json_decode($res->getBody());
 
-        return '/' . $savePath;
+            unlink($savePath);
+            return $data->data->links->url;
+        } catch (RequestException $e) {
+            var_dump($e);
+        }
     }
 }
