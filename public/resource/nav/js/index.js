@@ -1,7 +1,9 @@
-layui.use(['jquery', 'layer', 'miniAdmin', 'flow'], function () {
+layui.use(['jquery', 'layer', 'miniAdmin', 'flow', 'typeahead', 'form'], function () {
     var $ = layui.jquery,
         layer = layui.layer,
-        flow = layui.flow;
+        flow = layui.flow,
+        form = layui.form,
+        typeahead = layui.typeahead,
         util = layui.util,
         miniAdmin = layui.miniAdmin,
         element = layui.element;
@@ -17,6 +19,84 @@ layui.use(['jquery', 'layer', 'miniAdmin', 'flow'], function () {
         maxTabNum: 10,              // 最大的tab打开数量
     };
     miniAdmin.render(options);
+
+    // 切换搜索引擎
+    $('#filter-search li').on('click', function() {
+        var tipsHref = $(this).attr('lay-href');
+        $('#supplier').attr('data-href', tipsHref)
+    })
+    // 百度联想词
+    typeahead.render({
+        elem: '#supplier',
+        source: function(query, process) {
+
+            var script = document.createElement('script');
+            var callbackName = 'suggestionCallback'; // 回调函数名称
+            script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + encodeURIComponent(query) + '&cb=' + callbackName;
+            document.head.appendChild(script);
+            // 定义回调函数来处理返回的数据
+            window[callbackName] = function(data) {
+                var result = [];
+                if (data.s && data.s.length > 0) {
+                    data.s.forEach(function(suggestion) {
+                        result.push({
+                            text: suggestion, // 显示的文本
+                            value: suggestion // 值，可以根据需要进行修改
+                        });
+                    });
+                }
+                process(result); // 将结果传递给typeahead
+            };
+        },
+        // 显示的文本
+        displayText: function(item) {
+            var tabItems = document.querySelectorAll('.layui-tab-item.layui-show');
+            if (tabItems) {
+                // 如果存在，去除动画
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = `
+                    .layui-tab-item.layui-show {
+                        animation: none !important;
+                        -webkit-animation: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            return item.text + '(' + item.value + ')';
+        },
+        // 选择某一项后的回调
+        afterSelect: function(item){
+            var keyword = $('#supplier').val(); // 获取输入框的值
+            var href = $('#supplier').attr('data-href'); // 获取输入框的值
+            if(!keyword){
+                return $('#supplier').focus()
+            };
+            var url = href + encodeURIComponent(keyword); // 构建搜索 URL
+            window.open(url, '_blank'); // 在新标签页打开搜索结果
+        }
+    });
+    // 监听输入框的 keyup 事件，当按下回车键时触发搜索
+    $('#supplier').keyup(function(event) {
+        if (event.keyCode === 13) {
+            searchFunction();
+        }
+    });
+
+    // 监听搜索图标的点击事件
+    $('#search-icon').click(function() {
+        searchFunction();
+    });
+    // 定义搜索函数
+    function searchFunction() {
+        var keyword = $('#supplier').val(); // 获取输入框的值
+        var href = $('#supplier').attr('data-href'); // 获取输入框的值
+        if(!keyword){
+            return $('#supplier').focus()
+        };
+        var url = href + encodeURIComponent(keyword); // 构建搜索 URL
+        window.open(url, '_blank'); // 在新标签页打开搜索结果
+    }
 
     // 图片懒加载
     flow.lazyimg({

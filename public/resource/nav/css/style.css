@@ -28,6 +28,31 @@ html, body {
 .layui-bg-gray {
     background-color: transparent !important;
 }
+.main-search {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.layui-input-wrap {
+    position: relative;
+}
+#supplier {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff;
+    border: 1px solid #ccc; /* 添加边框以提高可见性 */
+    border-radius: 50px;
+    padding: 9px 20px;
+    height: 50px;
+}
+#search-icon {
+    font-size: 24px; /* 根据需要调整图标大小 */
+    z-index: 10; /* 确保图标在图片上方 */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #6C757D;
+    cursor: pointer;
+}
 .layui-card {
     background-color: rgba(255, 255, 255, 0.2) !important;
     border-radius: 5%;

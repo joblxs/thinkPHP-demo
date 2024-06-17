@@ -15,6 +15,7 @@
     <link rel="icon" href="https://pic.lxshuai.top/i/2024/05/19/6649a456f32c0.ico">
 
     <link rel="stylesheet" href="/resource/nav/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="/resource/nav/css/typeahead.css">
     <link rel="stylesheet" href="/resource/nav/css/layuimini.css?v=2.0.4.2" media="all">
     <link rel="stylesheet" href="/resource/nav/css/themes/default.css" media="all">
     <link rel="stylesheet" href="/resource/nav/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
@@ -86,9 +87,25 @@
     <div class="layuimini-site-mobile"><i class="layui-icon"></i></div>
 
     <!-- 内容主体区域 -->
-    <div class="layui-body main">
+    <div class="layui-body main ">
         <div class="main-banner"></div>
-        <div class="main-search"></div>
+        <div class="layui-form main-search layui-fluid layui-row">
+            <div class="layui-tab layui-tab-brief layui-col-xs11 layui-col-sm10 layui-col-md6 layui-col-lg4" id="filter-search" lay-filter="filter-search">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-href="https://www.baidu.com/s?wd=">百度</li>
+                    <li lay-href="https://cn.bing.com/search?q=">必应</li>
+                    <li lay-href="https://www.google.com/search?q=">谷歌</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show" style="border-top:0">
+                        <div class="layui-input-wrap">
+                            <input type="text" id="supplier" name="supplier" placeholder="输入搜索内容" data-href="https://www.baidu.com/s?wd=" class="layui-input">
+                            <i class="layui-icon layui-icon-search" id="search-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="main-site" id="flow-lazyimg">
             {volist name="cat" id="item" key="k"}
             <div class="layui-tab layui-tab-brief" lay-filter="{$item.id}">

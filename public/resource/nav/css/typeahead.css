@@ -1,0 +1,45 @@
+.layui-typeahead {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    padding: 5px 0;
+    z-index: 899;
+    min-width: 100%;
+    max-width: 98%;
+    border: 1px solid #eee;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 8%);
+    box-sizing: border-box;
+    color: #5f5f5f;
+}
+.layui-typeahead.layui-typeahead-selected {
+    display: block;
+}
+.layui-typeahead dd {
+    cursor: pointer;
+}
+.layui-typeahead dd:hover {
+    background-color: #f8f8f8;
+    -webkit-transition: .5s all;
+    transition: .5s all
+}
+.layui-typeahead dd.layui-select-tips {
+    padding-left: 10px !important;
+    color: #999;
+}
+.layui-typeahead dd.layui-this {
+    background-color: #f8f8f8;
+    color: #16b777;
+    font-weight: 700;
+}
+.layui-typeahead dd {
+    padding: 0 10px;
+    line-height: 36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
