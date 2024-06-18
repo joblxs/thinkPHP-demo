@@ -96,6 +96,12 @@ html, body {
 	overflow-y: scroll;
 	width: 100%;
 }
+@media (max-width: 768px) {
+	.content {
+		top: 32%;
+		height: 58%;
+	}
+}
 /* 特定于.content类的滚动条样式 */
 .content::-webkit-scrollbar {
 	width: 0; /* 可以设置不同的宽度 */
