@@ -8,6 +8,10 @@ html, body {
 	/* background: black; */
 	/* background: linear-gradient(to bottom, #000000 0%, #5788fe 100%); */
 	font-family:'Questrial','Noto Serif SC' ;
+	color: #fff !important;
+}
+a, body {
+	color: #fff !important;
 }
 
 .site-header {
@@ -89,7 +93,6 @@ html, body {
 	user-select: none;
 	height: 68%;
 	text-align: center;
-	color: #fff !important;
     position: absolute;
     top: 25%;
 	z-index:9999;
@@ -130,7 +133,6 @@ html, body {
 	transform: translateY(-5px);
 }
 .content .content-nav .layui-panel a:hover {
-	color: #fff !important;
 	font-weight: bold;
 }
 .site-footer {
