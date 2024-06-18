@@ -88,80 +88,40 @@ html, body {
 	-khtml-user-select: none;
 	user-select: none;
 	text-align: center;
-	color: #fff;
+	color: #777 !important;
     position: absolute;
-    left: 50%;
-    top: 50%;
-	transform: translate(-50%,-50%);
+    top: 25%;
 	z-index:9999;
-	height: 50%;
-	opacity: 0.25;
-	transition: opacity 2s ease;
 	overflow-y: scroll;
-	padding-top: 1%;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap; /* 允许子元素换行 */
+	justify-content: center; /* 水平居中 */
+	align-items: center; /* 垂直居中 */
+	padding: 0 10px;
 }
 	
 /* 特定于.content类的滚动条样式 */
 .content::-webkit-scrollbar {
-	width: 0px; /* 可以设置不同的宽度 */
+	width: 0; /* 可以设置不同的宽度 */
 }
-.content:hover {
-	opacity: 1.5;
+.content .layui-panel {
+	height: 50px;
+	line-height: 50px;
+	margin: 10px;
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	border-radius: 5%;
+	border: 0;
+	transition: box-shadow 0.3s, transform 0.2s;
 }
-
-nav {
-    display: inline-block;
-    position: relative;
+.content .layui-panel:hover {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.5) !important;
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0);
+	transform: translateY(-5px);
 }
-.navigation {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    list-style-type: none;
-}
-.navigation__item {
-    display: inline-block;
-    /* line-height: 1em; */
-    padding: 0.6em;
-}
-.navigation__item a {
-    position: relative;
-    color: #FFF;
-    opacity: .8;
-	/* transition: all .3s; */
-	padding: 10px 20px;
-    border: 1px solid #fff;
-    border-radius: 20px;
-    font-size: .9em;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: none;
-	-webkit-font-smoothing: antialiased;
-	text-decoration: none;
-	transition: transform 0.3s ease; /* 平滑过渡效果 */
-    display: inline-block; /* 使a标签可以应用transform属性 */
-}
-.navigation__item a:hover {
-    color: #ffffff;
-    /* background: #FF7F00; */
-    /* border-color: #FF7F00; */
-    opacity: 1;
-    /* transition: all .3s; */
-	transform: scale(1.2); /* 鼠标悬停时放大到1.2倍 */
-}
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 7px rgba(255, 255, 255, 0);
-  }
-  50% {
-    opacity: 0.7;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  }
-}
-
-a.twinkle {
-	animation: twinkle 3s infinite;
+.content .layui-panel a:hover {
+	color: #fff !important;
 }
 ol, ul {
 	list-style: none;
@@ -189,21 +149,4 @@ ol, ul {
 .icpnum{
 	color: #fff;
 	text-decoration: none;
-}
-
-@media (max-width: 768px) {
-	.content {
-		width: 90%;
-		opacity: 1;
-		top: 60%;
-		height: 60%;
-	}
-	.navigation {
-		flex-direction: column;
-		align-items: center;
-	}
-	.navigation__item {
-		margin-bottom: 10px;
-		font-size: 16px;
-	}
 }
