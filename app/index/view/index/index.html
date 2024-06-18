@@ -11,6 +11,7 @@
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Lato:300'>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/resource/index/css/style.css">
+    <link rel="stylesheet" href="/resource/common/css/custom.css" media="all">
 
     <link rel="icon" href="/resource/index/images/favicon.ico">
     <link rel="shortcut icon" href="/resource/index/images/favicon.ico">
@@ -43,35 +44,37 @@
 </header>
 
 <div class="content layui-row">
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="https://chat.lxshuai.top/">
-            <div>chatGPT</div>
-        </a>
-    </div>
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="/nav">
-            <div>导航</div>
-        </a>
-    </div>
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="https://www.lxshuai.top/">
-            <div>博客</div>
-        </a>
-    </div>
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="https://pic.lxshuai.top/">
-            <div>图床</div>
-        </a>
-    </div>
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="https://listen.lxshuai.top/">
-            <div>站点监测</div>
-        </a>
-    </div>
-    <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
-        <a target="_blank" href="/apidoc">
-            <div>api管理</div>
-        </a>
+    <div class="content-nav">
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="https://chat.lxshuai.top/">
+                <div>chatGPT</div>
+            </a>
+        </div>
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="/nav">
+                <div>导航</div>
+            </a>
+        </div>
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="https://www.lxshuai.top/">
+                <div>博客</div>
+            </a>
+        </div>
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="https://pic.lxshuai.top/">
+                <div>图床</div>
+            </a>
+        </div>
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="https://listen.lxshuai.top/">
+                <div>站点监测</div>
+            </a>
+        </div>
+        <div class="layui-panel layui-col-xs12 layui-col-sm6 layui-col-md3 layui-col-lg1">
+            <a target="_blank" href="/apidoc">
+                <div>api管理</div>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -85,6 +88,7 @@
 <canvas id="canvas"></canvas>
 <script type="text/javascript" src="/resource/index/js/sky.js"></script>
 <script src="/resource/nav/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="/resource/common/js/cursor.js" charset="utf-8"></script>
 <!--umami流量统计-->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="2a9665de-092a-4155-a178-3a406591caac"></script>
 <script>
@@ -100,25 +104,9 @@
         window.location.href =
             'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
             encodeURIComponent(window.location.href);
-</script>
 
-<script>
-    // 随机闪烁
-    window.addEventListener('DOMContentLoaded', (event) => {
-        // 获取所有的导航项中的<a>标签
-        const links = document.querySelectorAll('.navigation__item a');
 
-        // 为每个<a>标签设置随机的动画延迟
-        links.forEach((link, index) => {
-            // 设置随机延迟，范围从0到3秒之间
-            const randomDelay = Math.random() * 3;
-            link.style.animationDelay = `${randomDelay}s`;
-            link.classList.add('twinkle');
-        });
-    });
-</script>
-
-<script>
+    // 随机一句话，打字机效果
     var texts = [
         "生命如火，燃烧不息；心灵如潮，折腾不止。",
         "时间是一笔贷款，我们永远无法偿还。",
