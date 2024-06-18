@@ -89,7 +89,7 @@ html, body {
 	user-select: none;
 	height: 68%;
 	text-align: center;
-	color: #d3d0d0 !important;
+	color: #fff !important;
     position: absolute;
     top: 25%;
 	z-index:9999;
@@ -131,6 +131,7 @@ html, body {
 }
 .content .content-nav .layui-panel a:hover {
 	color: #fff !important;
+	font-weight: bold;
 }
 .site-footer {
 	position: absolute;
