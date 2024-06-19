@@ -75,6 +75,26 @@
                 </a>
             </div>
             <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+                <a target="_blank" href="https://siyuan.lxshuai.top/">
+                    <div>思源笔记</div>
+                </a>
+            </div>
+            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+                <a target="_blank" href="https://alist.lxshuai.top/">
+                    <div>alist</div>
+                </a>
+            </div>
+            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+                <a target="_blank" href="https://file.lxshuai.top/">
+                    <div>文件快递柜</div>
+                </a>
+            </div>
+            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+                <a target="_blank" href="https://tools.lxshuai.top/">
+                    <div>it-tools工具箱</div>
+                </a>
+            </div>
+            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
                 <a target="_blank" href="https://listen.lxshuai.top/">
                     <div>站点监测</div>
                 </a>
@@ -102,6 +122,15 @@
 <!--umami流量统计-->
 <!--<script defer src="https://cloud.umami.is/script.js" data-website-id="2a9665de-092a-4155-a178-3a406591caac"></script>-->
 <script>
+    // 获取.title元素和.site-content元素
+    var titleElement = document.querySelector('.title');
+    var siteContent = document.querySelector('.site-content-nav');
+
+    // 为.title元素添加点击事件监听器
+    titleElement.addEventListener('click', function() {
+        // 切换类名来控制显示和隐藏，不改变display属性
+        siteContent.classList.toggle('hidden');
+    });
     // 百度统计
     var _hmt = _hmt || [];
     (function () {

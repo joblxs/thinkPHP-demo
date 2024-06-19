@@ -116,6 +116,14 @@ a, body {
 	flex-wrap: wrap; /* 允许子元素换行 */
 	justify-content: center; /* 水平居中 */
 	align-items: center; /* 垂直居中 */
+	opacity: 1;
+	transform: translateY(0);
+	transition: transform 0.5s ease;
+}
+.site-content .site-content-nav.hidden {
+	transform: translateY(-100%); /* 根据需要调整偏移量 */
+	opacity: 0; /* 可选：添加透明度变化以增强动画效果 */
+	/* 保持display不变，不使用display: none; */
 }
 .site-content .site-content-nav .layui-panel {
 	height: 50px;
