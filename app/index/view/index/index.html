@@ -45,6 +45,7 @@
 </div>
 
 <div class="content">
+    <div class="show"><i class="layui-icon layui-icon-spread-left"></i></div>
     <div class="site-header">
         <div class="title">拾贝</div>
         <hr class="hr"/>
@@ -53,53 +54,53 @@
     </div>
 
     <div class="site-content layui-row">
-        <div class="site-content-nav">
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+        <div class="site-content-nav layui-col-xs10 layui-col-sm6 layui-col-md3 layui-col-lg2">
+            <div class="layui-panel">
                 <a target="_blank" href="https://chat.lxshuai.top/">
                     <div>chatGPT</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="/nav">
                     <div>导航</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://www.lxshuai.top/">
                     <div>博客</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://pic.lxshuai.top/">
                     <div>图床</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://siyuan.lxshuai.top/">
                     <div>思源笔记</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://alist.lxshuai.top/">
                     <div>alist</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://file.lxshuai.top/">
                     <div>文件快递柜</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://tools.lxshuai.top/">
                     <div>it-tools工具箱</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="https://listen.lxshuai.top/">
                     <div>站点监测</div>
                 </a>
             </div>
-            <div class="layui-panel layui-col-xs5 layui-col-sm3 layui-col-md2 layui-col-lg1">
+            <div class="layui-panel">
                 <a target="_blank" href="/apidoc">
                     <div>api管理</div>
                 </a>
@@ -123,13 +124,13 @@
 <!--<script defer src="https://cloud.umami.is/script.js" data-website-id="2a9665de-092a-4155-a178-3a406591caac"></script>-->
 <script>
     // 获取.title元素和.site-content元素
-    var titleElement = document.querySelector('.title');
+    var titleElement = document.querySelector('.show');
     var siteContent = document.querySelector('.site-content-nav');
 
     // 为.title元素添加点击事件监听器
     titleElement.addEventListener('click', function() {
         // 切换类名来控制显示和隐藏，不改变display属性
-        siteContent.classList.toggle('hidden');
+        siteContent.classList.toggle('display');
     });
     // 百度统计
     var _hmt = _hmt || [];
