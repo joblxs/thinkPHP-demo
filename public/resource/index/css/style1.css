@@ -131,6 +131,12 @@ a, body {
 .show i {
 	font-size: 30px;
 	color: #fff;
+	opacity: 0.3;
+	display: inline-block; /* 使 transform 属性生效 */
+}
+.show i:hover {
+	cursor: pointer; /* 改变鼠标指针形状，表示可点击 */
+	opacity: 1;
 }
 .site-content .site-content-nav .layui-panel {
 	height: 50px;

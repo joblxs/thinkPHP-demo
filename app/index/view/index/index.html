@@ -125,13 +125,21 @@
 <script>
     // 获取.title元素和.site-content元素
     var titleElement = document.querySelector('.show');
+    var iElement = document.querySelector('.show i');
     var siteContent = document.querySelector('.site-content-nav');
 
     // 为.title元素添加点击事件监听器
     titleElement.addEventListener('click', function() {
         // 切换类名来控制显示和隐藏，不改变display属性
         siteContent.classList.toggle('display');
+        // 切换图标类名
+        if (iElement.classList.value == 'layui-icon layui-icon-spread-left') {
+            iElement.setAttribute('class', 'layui-icon layui-icon-shrink-right');
+        } else {
+            iElement.setAttribute('class', 'layui-icon layui-icon-spread-left');
+        }
     });
+
     // 百度统计
     var _hmt = _hmt || [];
     (function () {
